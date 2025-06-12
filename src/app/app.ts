@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Navbar } from "./components/navbar/navbar";
-import { Card } from "./shared/card/card";
 
 @Component({
     selector: 'app-root',
-    imports: [Navbar, Card],
+    imports: [],
     templateUrl: './app.html',
     styleUrl: './app.css'
 })
@@ -13,4 +10,5 @@ export class App {
     protected title = 'my-page';
 
     currentYear: number = new Date().getFullYear();
+    cssClass: string = "hover:text-(--secondary-darker)";
 }
