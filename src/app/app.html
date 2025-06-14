@@ -43,7 +43,7 @@
     </section>
 
     <!-- Skills section, I think I should put framework and language specific terms, maybe even other skills -->
-    <section class="pt-15 px-40 bg-(--secondary) grid gap-3 grid-cols-2">
+    <section class="pt-15 px-50 bg-(--secondary) grid gap-3 grid-cols-2">
 
         <div class="bg-(--primary) rounded-xl shadow-xl p-5 row-span-2">
             <div class="flex items-center gap-4">
@@ -61,7 +61,7 @@
                     <li><span>Flyway (with Spring integration)</span></li>
                     <li><span>JUnit (with Spring integration)</span></li>
                     <li><span>JasperReports</span></li>
-                    <li><span>GoogleAuth Libraries</span></li>
+                    <li><span>GoogleOAuth2 Libraries</span></li>
                     <li><span>Google API Libraries</span></li>
                 </ul>
             </div>
@@ -85,14 +85,15 @@
 
         <div class="bg-(--primary) rounded-xl shadow-md p-5">
             <div class="flex items-center gap-4">
-                <img src="svgs/colored-angular-icon.svg" alt="angular framework icon">
+                <!-- <img src="svgs/colored-angular-icon.svg" alt="angular framework icon"> -->
                 <h4 class="text-(--secondary-darker) text-2xl">Other skills</h4>
             </div>
 
             <div class="text-white mt-4">
                 <ul class="text-md list-disc ml-5">
+                    <li><span>SQL (DDL and DML)</span></li>
                     <li><span>UML modeling</span></li>
-                    <li><span>SQL</span></li>
+                    <li><span>Figma</span></li>
                     <li><span>English B2 (TOIEC exam)</span></li>
                 </ul>
             </div>
@@ -101,31 +102,101 @@
     </section>
 
     <!-- Experience section -->
-    <section class="py-15 px-40 bg-(--secondary) text-(--primary-darker)">
+    <section class="py-15 px-50 bg-(--secondary) text-(--primary-darker)">
         <h3 class="text-4xl">Tech Experience</h3>
-        <p class="my-2">Intership at <b>Abútua Technology</b>: april/2024 - currently</p>
+        <p class="my-2 text-lg">Intership at <b class="mr-1">Abútua Technology:</b> may/2024 - currently</p>
 
-        <p class="my-2"><span class="italic font-bold">Educational platform:</span></p>
+        <!-- course platform project info -->
+        <p class="mt-5 mb-2 text-lg">
+            <span class="italic font-bold mr-1">Educational platform:</span>
+            website with coding classes, including Angular and Spring Frameworks as well as SQL.
+        </p>
         <ul class="list-disc ml-10">
-            <li><b>Certificate emission</b></li>
-            <p class="mb-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste in repellendus vel ea,
-                accusantium pariatur sit nemo, vitae optio obcaecati quam repellat magni, molestias temporibus! Eius ut
-                repellendus ad labore!</p>
-            <li><b>Notification system</b></li>
-            <p class="mb-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste in repellendus vel ea,
-                accusantium pariatur sit nemo, vitae optio obcaecati quam repellat magni, molestias temporibus! Eius ut
-                repellendus ad labore!</p>
-            <li><b>Emailing module</b></li>
-            <p class="mb-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste in repellendus vel ea,
-                accusantium pariatur sit nemo, vitae optio obcaecati quam repellat magni, molestias temporibus! Eius ut
-                repellendus ad labore!</p>
+            <li>
+                <p><b>Certificate emission</b></p>
+                <p class="mb-3">
+                    I Implemented a system where students could request and receive a certificate upon
+                    course completion. The document's design was also created by me using JasperReports. To prevent
+                    falsifications a validation feature was implemented as well.
+                </p>
+            </li>
+
+            <li>
+                <p><b>Notification and announcement systems</b></p>
+                <p class="mb-3">
+                    I create a feature where the system would emit notifications for users once a project
+                    was completed or a new post was created. It also supported announcement creation, where platform
+                    admins could send important announcements for all students.
+                </p>
+            </li>
+
+            <li>
+                <p><b>Email system upgrade</b></p>
+                <p class="mb-3">
+                    I refactored the old email module to acommodate the new notification system, while updating previous
+                    templates, making the old and new emails more clear for users. For this, the Twilio SendGrid service
+                    was integrated to the platform.
+                </p>
+            </li>
+
+            <li>
+                <p><b>Course progress feedback</b></p>
+                <p class="mb-3">
+                    To improve UX, I updated the old course feedback system to allow users to better follow their
+                    progress by tracking video-class completion, user-project feedback and allowing students to continue
+                    from where they last where.
+                </p>
+            </li>
+
+            <li>
+                <p><b>Video player transition</b></p>
+                <p class="mb-3">
+                    Worked on the partial transition from the previous video player to an Angular-made video player to improve UX and provide funcionalities like automatic class' completion.
+                </p>
+            </li>
+
+        </ul>
+
+        <!-- add ads-platform project info -->
+        <p class="mt-5 mb-2 text-lg">
+            <span class="italic font-bold mr-1">Platform for non-intrusive, targeted ads:</span>
+        </p>
+        <ul class="list-disc ml-10">
+            <li>
+                <p><b>Security system</b></p>
+                <p class="mb-3">
+                    I implemented a security system using STATELESS authentication with JWT and Spring's OAuth2 implementations of resource and authorization servers.
+                </p>
+            </li>
+
+            <li>
+                <p><b>Google services integration</b></p>
+                <p class="mb-3">
+                    Integration with GoogleAPIs, using Google's OAuth2 implementation and YouTube's Data APIs, such as Analylicts and V3 API.
+                </p>
+            </li>
+
+        </ul>
+
+        <!-- add software factory activities -->
+        <p class="mt-5 mb-2 text-lg">
+            <span class="italic font-bold mr-1">Software factory: </span>
+            project in development at my College (FATEC)
+        </p>
+        <ul class="list-disc ml-10">
+            <li>
+                <p><b>Documentation</b></p>
+                <p class="mb-3">
+                    I worked in the conception phase of a political platform. My responsabilities amounted to creating UML and non-UML documents like UseCase Diagrams and Persona Creation. Also, I created the prototype's screens using Figma. During this time I also participated in meetings with my colleagues and the professor responsible for managing the project.
+                </p>
+            </li>
         </ul>
     </section>
 
     <!-- Education section -->
-    <!-- <section>
-        <h3></h3>
-    </section> -->
+    <section class="py-15 px-50 bg-(--primary)">
+        <h3>Education</h3>
+    </section>
 
 </main>
 
