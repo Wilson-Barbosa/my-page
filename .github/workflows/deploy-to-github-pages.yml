@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: 🔨 Build & Prerender Angular App
-        run: npx ng build
+        run: npx ng build --base-ref /
 
       - name: 🚀 Deploy to deploy branch
         uses: JamesIves/github-pages-deploy-action@v4
