@@ -14,3 +14,7 @@
     --font-themed-color: white;
     --background-themed-color: black;
 }
+
+html {
+  scroll-behavior: smooth;
+}
