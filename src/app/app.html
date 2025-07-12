@@ -1,18 +1,35 @@
 <!-- Top navbar section -->
-<nav class="bg-(--primary) flex sticky top-0 transition-all duration-300"
-    [ngClass]="{'px-14 pt-12': isPageAtTheTop, 'px-9 py-2 shadow-md': !isPageAtTheTop}">
+<nav class="bg-(--primary) flex items-center justify-between sticky top-0 left-0 right-0 transition-all duration-300"
+    [ngClass]="{
+        'py-2 px-4 md:py-7 md:px-7': isPageAtTheTop,
+        'py-1.5 px-3 md:py-3 md:px-5 shadow-xl': !isPageAtTheTop
+    }">
 
-    <p class="flex none text-white text-2xl">Wilson Diego Barbosa</p>
+    <p class="text-white">Wilson Diego Barbosa</p>
 
-    <ul class="flex flex-1 items-center justify-center gap-6 text-(--secondary)">
+    <!-- I'm using two navbars because making one is simpler and cover all edge use cases -->
+    <!-- desktop version -->
+    <ul class="hidden md:flex md:flex-row items-center justify-center gap-6 text-(--secondary)">
         <li [class]="cssClass"><a (click)="sendToTop()" class="cursor-pointer">Home</a></li>
-        <li [class]="cssClass"><a href="#about-me">About me</a></li>
-        <li [class]="cssClass"><a href="#experience">Experience</a></li>
-        <li [class]="cssClass"><a href="#social-media">Social Media</a></li>
+        <li [class]="cssClass"><a href="#about-me" (click)="toggleNavBarCollapsed()" >About me</a></li>
+        <li [class]="cssClass"><a href="#experience" (click)="toggleNavBarCollapsed()">Experience</a></li>
+        <li [class]="cssClass"><a href="#social-media" (click)="toggleNavBarCollapsed()">Social Media</a></li>
+    </ul>
+
+    <!-- mobile version -->
+    <ul class="flex flex-col md:hidden items-center justify-center gap-6 text-(--secondary) absolute top-11 left-0 w-full bg-(--primary) transition-all duration-300"
+        [ngClass]="{
+            'max-h-0 opacity-0 pointer-events-none': !isNavbarCollapsed,
+            'max-h-96 opacity-100 pointer-events-auto': isNavbarCollapsed
+        }">
+        <li [class]="cssClass"><a (click)="sendToTop()" class="cursor-pointer">Home</a></li>
+        <li [class]="cssClass"><a href="#about-me" (click)="toggleNavBarCollapsed()" >About me</a></li>
+        <li [class]="cssClass"><a href="#experience" (click)="toggleNavBarCollapsed()">Experience</a></li>
+        <li [class]="cssClass"><a href="#social-media" (click)="toggleNavBarCollapsed()">Social Media</a></li>
     </ul>
 
     <!-- icon set -->
-    <div class="flex text-center text-xl gap-12 text-(--secondary)">
+    <div class="hidden lg:flex items-center justify-center text-center text-xl gap-12 text-(--secondary)">
         <a [class]="cssClass" href="https://github.com/Wilson-Barbosa" target="_blank">
             <i class="bi bi-github"></i>
         </a>
@@ -23,245 +40,166 @@
             <i class="bi bi-youtube"></i>
         </a>
     </div>
+
+    <!-- collapse menu icon -->
+    <i class="md:hidden bi bi-list text-white py-1 px-2 transition-all duration-300" (click)="toggleNavBarCollapsed()"
+        [ngClass]="{'-rotate-90': isNavbarCollapsed}"></i>
 </nav>
 
+<!-- Intro section -->
+<section class="bg-(--primary) my-12 flex flex-col md:flex-row gap-5 lg:gap-20 items-center justify-center p-6">
+
+    <div class="w-60 sm:w-80 rounded-full overflow-hidden">
+        <img src="images/my-photo-without-background.png" class="w-full h-auto">
+    </div>
+
+    <div class="">
+        <h3 class="hidden md:block md:text-2xl text-(--secondary-darker)">Wilson Diego Barbosa</h3>
+
+        <div class="flex items-center gap-4 mt-3 ">
+            <img class="w-7" src="svgs/brazil-flag-colored-icon.svg" alt="brazillian flag">
+            <p class="text-white">Software Developer</p>
+        </div>
+    </div>
+</section>
+
 <!-- Main content goes here -->
-<main id="home">
+<main id="home" class="bg-(--secondary) pb-10 sm:px-6 md:px-12 lg:px-20 xl:px-50">
+    <section id="about-me" class="bg-(--secondary) text-(--primary-darker) p-4">
 
-    <!-- Intro section -->
-    <section class="my-15 flex items-center justify-center gap-14">
+        <h3 [class]="headerStyle" class="mt-10">About me</h3>
 
-        <!-- photo :) -->
-        <div class=" rounded-full overflow-hidden">
-            <img src="images/my-photo-without-background.png" class="w-full h-full object-cover"
-                alt="an image of Wilson Barbosa, the creator of this page">
-        </div>
-
-        <!-- brief -->
-        <div class="">
-            <h3 class="text-(--secondary-darker) text-4xl">Wilson Diego Barbosa</h3>
-
-            <div class="flex items-center gap-4 mt-3">
-                <img class="w-7" src="svgs/brazil-flag-colored-icon.svg" alt="brazillian flag">
-                <p class="text-white">Software Developer</p>
-            </div>
-        </div>
-
-    </section>
-
-    <section id="about-me" class="pt-20 px-50 bg-(--secondary) text-(--primary-darker)">
-        <h3 class="text-4xl">About me</h3>
-
-        <p class="my-3">
+        <p [class]="pStyle">
             I'm a Brazilian software developer, and while I code mostly in Java and Typescript I'm learning a bit of Lua
             and Golang as well.
         </p>
 
-        <p class="my-3">
+        <p [class]="pStyle">
             Currently I'm finishing my degree on Analysis and System Development at FATEC (Faculdade
             de Tecnologia de São Paulo) at the Campus located in the city of Itu!
         </p>
 
-        <p class="mt-3">
+        <p [class]="pStyle">
             Although art and culture are everywhere I feel the world can be a bit lackluster and sometimes even boring,
-            so every character, be it code or writing can bring color to the grayest canvas!
+            but any character, be it code or writing can bring color to the grayest canvas!
         </p>
+
     </section>
 
-    <!-- Skills section, I think I should put framework and language specific terms, maybe even other skills -->
-    <section id="skills" class="pt-20 px-50 bg-(--secondary) grid gap-3 grid-cols-2">
+    <!-- skills -->
+    <section id="skills" class="bg-(--secondary) flex flex-wrap gap-3 justify-center items-center mt-10">
 
-        <div class="bg-(--primary) rounded-xl shadow-xl p-5 row-span-2">
+        <div [class]="cardStyle">
             <div class="flex items-center gap-4">
-                <img src="svgs/colored-spring-icon.svg" alt="spring framework icon">
-                <h4 class="text-(--secondary-darker) text-2xl">Spring Framework</h4>
+                <img class="w-9" src="svgs/colored-spring-icon.svg" alt="spring icon">
+                <h4 class="text-(--secondary-darker)">Spring Framework</h4>
             </div>
 
-            <div class="text-white mt-4">
-                <ul class="text-md list-disc ml-5">
-                    <li><span>Spring Boot</span></li>
-                    <li><span>Spring Security</span></li>
-                    <li><span>Spring Web (spring MVC with standard servlet)</span></li>
-                    <li><span>Spring OAuth2 Authorization Server</span></li>
-                    <li><span>Spring OAuth2 Resource Server</span></li>
-                    <li><span>Spring Data with JPA</span></li>
-                    <li><span>Flyway (with Spring integration)</span></li>
-                    <li><span>JUnit (with Spring integration)</span></li>
-                    <li><span>JasperReports</span></li>
-                    <li><span>GoogleOAuth2 Libraries</span></li>
-                    <li><span>Google API Libraries</span></li>
-                </ul>
-            </div>
+            <ul class="text-sm text-white list-disc ml-4 mt-2">
+                <li>Spring Boot</li>
+                <li>Spring Security</li>
+                <li>Spring Web (spring MVC with standard servlet)</li>
+                <li>Spring OAuth2 Authorization Server</li>
+                <li>Spring OAuth2 Resource Server</li>
+                <li>Spring Data with JPA</li>
+                <li>Flyway (with Spring integration)</li>
+                <li>JUnit (with Spring integration)</li>
+                <li>JasperReports</li>
+                <li>GoogleOAuth2 Libraries</li>
+                <li>Google API Libraries</li>
+            </ul>
         </div>
 
-        <div class="bg-(--primary) rounded-xl shadow-md p-5">
+        <div [class]="cardStyle">
             <div class="flex items-center gap-4">
-                <img src="svgs/colored-angular-icon.svg" alt="angular framework icon">
-                <h4 class="text-(--secondary-darker) text-2xl">Angular Framework</h4>
+                <img class="w-9" src="svgs/colored-angular-icon.svg" alt="angular icon">
+                <h4 class="text-(--secondary-darker)">Angular Framework</h4>
             </div>
 
-            <div class="text-white mt-4">
-                <ul class="text-md list-disc ml-5">
-                    <li><span>RxJs</span></li>
-                    <li><span>NgBootstrap</span></li>
-                    <li><span>Tailwind with Angular</span></li>
-                </ul>
-            </div>
-
+            <ul class="text-sm text-white list-disc ml-4 mt-2">
+                <li>RxJs</li>
+                <li>NgBootstrap</li>
+                <li>Tailwind with Angular</li>
+                <li>Responsive design</li>
+            </ul>
         </div>
 
-        <div class="bg-(--primary) rounded-xl shadow-md p-5">
+        <div [class]="cardStyle">
             <div class="flex items-center gap-4">
-                <!-- <img src="svgs/colored-angular-icon.svg" alt="angular framework icon"> -->
-                <h4 class="text-(--secondary-darker) text-2xl">Other skills</h4>
+                <h4 class="text-(--secondary-darker)">Other skills</h4>
             </div>
 
-            <div class="text-white mt-4">
-                <ul class="text-md list-disc ml-5">
-                    <li><span>SQL</span></li>
-                    <li><span>Docker</span></li>
-                    <li><span>UML modeling</span></li>
-                    <li><span>Figma</span></li>
-                    <li><span>English B2 (TOIEC exam)</span></li>
-                </ul>
-            </div>
+            <ul class="text-sm text-white list-disc ml-4 mt-2">
+                <li>SQL</li>
+                <li>Docker</li>
+                <li>UML modeling</li>
+                <li>Figma</li>
+                <li>English B2 (TOIEC exam)</li>
+            </ul>
         </div>
-
     </section>
 
     <!-- Experience section -->
-    <section id="experience" class="py-20 px-50 bg-(--secondary) text-(--primary-darker)">
-        <h3 class="text-4xl">Tech Experience</h3>
-        <p class="my-2 text-lg">Intership at <b class="mr-1">Abútua Technology:</b> may/2024 - currently</p>
+    <section id="experience" class="bg-(--secondary) text-(--primary-darker) p-4 mt-10">
+        <h3 [class]="headerStyle">Tech Experience</h3>
 
-        <!-- course platform project info -->
-        <p class="mt-5 mb-2 text-lg">
-            <span class="italic font-bold mr-1">Educational platform:</span>
-            website with coding classes, including Angular and Spring Frameworks as well as SQL.
-        </p>
-        <ul class="list-disc ml-10">
-            <li>
-                <p><b>Certificate emission</b></p>
-                <p class="mb-3">
-                    I Implemented a system where students could request and receive a certificate upon
-                    course completion. The document's design was also created by me using JasperReports. To prevent
-                    falsifications a validation feature was implemented as well.
-                </p>
-            </li>
+        @for(exp of professionalExperiences; track $index) {
+        <div>
 
-            <li>
-                <p><b>Notification and announcement systems</b></p>
-                <p class="mb-3">
-                    I create a feature where the system would emit notifications for users once a project
-                    was completed or a new post was created. It also supported announcement creation, where platform
-                    admins could send important announcements for all students.
-                </p>
-            </li>
+            <p [class]="pStyle">{{exp.description}}</p>
 
-            <li>
-                <p><b>Email system upgrade</b></p>
-                <p class="mb-3">
-                    I refactored the old email module to acommodate the new notification system, while updating previous
-                    templates, making the old and new emails more clear for users, using the Twilio SendGrid service.
-                </p>
-            </li>
+            @for(project of exp.projects; track $index) {
+            <p [class]="pStyle">
+                <span class="font-bold">{{project.title}}:</span>
+                {{project.description}}
+            </p>
 
-            <li>
-                <p><b>Course progress feedback</b></p>
-                <p class="mb-3">
-                    To improve UX, I updated the old course feedback system to allow users to better follow their
-                    progress by tracking video-class completion, user-project feedback and allowing students to continue
-                    from where they last where.
-                </p>
-            </li>
 
-            <li>
-                <p><b>Video player transition</b></p>
-                <p class="mb-3">
-                    Worked on the partial transition from the previous video player to an Angular-made video player to
-                    improve UX and provide funcionalities like automatic class' completion.
-                </p>
-            </li>
+            <ul class="list-disc">
+                @for(workedOn of project.workedOn; track $index) {
+                <li class="ml-4">
+                    <p [class]="pStyle" class="font-bold">{{workedOn.title}}:</p>
+                    <p [class]="pStyle">{{workedOn.description}}</p>
+                </li>
+                }
+            </ul>
 
-        </ul>
+            <div class="border border-(--primary) my-4"></div>
 
-        <div class="border-1 border-(--primary) mt-5"></div>
+            }
 
-        <!-- add ads-platform project info -->
-        <p class="mt-5 mb-2 text-lg">
-            <span class="italic font-bold mr-1">Platform for non-intrusive, targeted ads:</span>
-        </p>
-        <ul class="list-disc ml-10">
-            <li>
-                <p><b>Security system</b></p>
-                <p class="mb-3">
-                    I implemented a security system using STATELESS authentication with JWT and Spring's OAuth2
-                    implementations of resource and authorization servers.
-                </p>
-            </li>
+        </div>
+        }
 
-            <li>
-                <p><b>Google services integration</b></p>
-                <p class="mb-3">
-                    Integration with GoogleAPIs, using Google's OAuth2 implementation and YouTube's Data APIs, such as
-                    Analylicts and V3 API.
-                </p>
-            </li>
-
-        </ul>
-
-        <div class="border-1 border-(--primary) mt-5"></div>
-
-        <!-- add software factory activities -->
-        <p class="mt-5 mb-2 text-lg">
-            <span class="italic font-bold mr-1">Software factory: </span>
-            project in development at my College (FATEC)
-        </p>
-        <ul class="list-disc ml-10">
-            <li>
-                <p><b>Documentation</b></p>
-                <p>
-                    I worked in the conception phase of a political platform. My responsabilities amounted to creating
-                    UML and non-UML documents like UseCase Diagrams and Persona Creation. Also, I created the
-                    prototype's screens using Figma. During this time I also participated in meetings with my colleagues
-                    and the professor responsible for managing the project.
-                </p>
-            </li>
-        </ul>
     </section>
 
-    <!-- social media section -->
-    <section id="social-media" class="pb-25 px-50 bg-(--secondary) text-(--primary-darker)">
-        <h3 class="text-4xl text-center">Social media</h3>
+    <!-- social media stuff -->
+    <section id="social-media" class="bg-(--secondary) text-(--primary-darker) mt-5">
+        <h3 [class]="headerStyle">Social Media</h3>
 
-        <div class="flex items-center justify-center gap-20 mt-15">
-            <a href="https://github.com/Wilson-Barbosa" target="_blank"
-                class="flex flex-col items-center gap-3 hover:text-(--primary) transition-all duration-300">
-                <i class="bi bi-github text-5xl"></i>
+        <div class="flex items-center justify-center gap-5 mt-3">
+
+            <a class="flex flex-col items-center" href="https://github.com/Wilson-Barbosa">
+                <i class="bi bi-github text-2xl"></i>
                 <span class="font-bold">GitHub</span>
             </a>
-            <a href="https://www.linkedin.com/in/wilson-barbosa/" target="_blank"
-                class="flex flex-col items-center gap-3 hover:text-(--primary) transition-all duration-300">
-                <i class="bi bi-linkedin text-5xl"></i>
+
+            <a class="flex flex-col items-center" href="https://www.linkedin.com/in/wilson-barbosa/">
+                <i class="bi bi-linkedin text-2xl"></i>
                 <span class="font-bold">LinkedIn</span>
             </a>
-            <a href="https://www.youtube.com/@wilsonbarbosa8210" target="_blank"
-                class="flex flex-col items-center gap-3 hover:text-(--primary) transition-all duration-300">
-                <i class="bi bi-youtube text-5xl"></i>
+
+            <a class="flex flex-col items-center" href="https://www.youtube.com/@wilsonbarbosa8210">
+                <i class="bi bi-youtube text-2xl"></i>
                 <span class="font-bold">Youtube</span>
             </a>
         </div>
+
     </section>
 
 </main>
 
 <!-- Footer section -->
-<footer class="flex items-center justify-center gap-16 p-6 text-(--secondary) bg-(--primary)">
+<footer class="p-2.5 text-center text-(--secondary) bg-(--primary)">
     <p class="text-sm italic">© {{currentYear}} Wilson Diego Barbosa</p>
-
-    <!-- <div class="flex text-center text-xl gap-7 text-(--primary-darker)">
-        <a href="https://github.com/Wilson-Barbosa"><i class="bi bi-github"></i></a>
-        <a href="https://www.linkedin.com/in/wilson-barbosa/"><i class="bi bi-linkedin"></i></a>
-        <a href="https://www.youtube.com/@wilsonbarbosa8210"><i class="bi bi-youtube"></i></a>
-    </div> -->
 </footer>
