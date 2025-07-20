@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { Portfolio } from './portfolio/components/portfolio/portfolio';
-import { Blog } from './blog/components/blog/blog';
 import { BlogPost } from './blog/components/blog-post/blog-post';
 
 export const routes: Routes = [
@@ -8,12 +6,12 @@ export const routes: Routes = [
     { path: "", redirectTo: "portfolio", pathMatch: "full" },
     {
         path: "portfolio",
-        component: Portfolio,
+        loadComponent: () => import('./portfolio/components/portfolio/portfolio').then(c => c.Portfolio),
         title: "Portfolio"
     },
     {
         path: "blog",
-        component: Blog,
+        loadComponent: () => import('./blog/components/blog/blog').then(c => c.Blog),
         title: "Blog",
         children: [
             { path: "posts/:postId", component: BlogPost }
