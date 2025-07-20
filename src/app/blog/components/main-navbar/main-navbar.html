@@ -1,0 +1,19 @@
+<nav class="flex items-center justify-between px-3 py-2 text-white bg-(--primary-darker)">
+
+    <p>Welcome to my blog</p>
+
+    <div class="cursor-pointer text-(--secondary-darker)">
+        @switch (activeTheme) {
+            @case (themeEnum.DARK) {
+                <i class="bi bi-moon-stars-fill"></i>
+            }
+            @case (themeEnum.LIGHT) {
+                <i class="bi bi-sun-fill"></i>
+            }
+            @default {
+                <i class="bi bi-sun-fill"></i>
+            }
+        }
+    </div>
+
+</nav>

@@ -11,8 +11,6 @@ export class PageTitleStrategy extends TitleStrategy {
 
     override updateTitle(snapshot: RouterStateSnapshot): void {
 
-        console.log("update title called")
-
         const title = this.buildTitle(snapshot);
 
         if (title) {

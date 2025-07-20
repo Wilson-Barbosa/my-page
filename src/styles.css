@@ -11,8 +11,11 @@
     --secondary-darker: #dda027;
     --secondary-lighter: #e6d0a4;
 
-    --font-themed-color: white;
-    --background-themed-color: black;
+    /* Theme-related colors */
+    --primary-background-color: ;
+    --secondary-background-color: ;
+    --primary-font-color: ;
+    --secondary-font-color: ;
 }
 
 html {

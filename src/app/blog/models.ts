@@ -5,9 +5,9 @@ export interface BlogPost {
 
     body: string;
 
-    createdAt: Date;
+    createdTimestampMiliseconds: number;
 
-    lastUpdatedAt: Date;
+    lastUpdatedTimestampMiliseconds: number;
 
     keywords: PostKeyword[]
 
@@ -17,3 +17,5 @@ export interface BlogPost {
 export interface PostKeyword {
     name: string;
 }
+
+// export interface BlogImage
