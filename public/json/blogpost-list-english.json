@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1,
+        "title": "This is the blog title",
+        "body": "The body of the post is this. There's also the possibility of inserting an html element, like <b>this bold text</b>",
+        "createdTimestampMiliseconds": 1752972306167,
+        "lastUpdatedTimestampMiliseconds": 1752972306167,
+        "mainImage": "https://static.vecteezy.com/system/resources/thumbnails/035/137/122/large/a-small-kitten-is-sitting-on-the-green-grass-a-small-kitten-runs-on-the-grass-outdoors-in-the-sunlight-domestic-animals-cute-funny-cat-at-home-video.jpg",
+        "tags": []
+    },
+
+    {
+        "id": 2,
+        "title": "This is the another blog title",
+        "body": "The body of the post is this. There's also the possibility of inserting an html element, like <b>this bold text</b>",
+        "createdTimestampMiliseconds": 1752972306167,
+        "lastUpdatedTimestampMiliseconds": 1752972306167,
+        "mainImage": "https://static.vecteezy.com/system/resources/thumbnails/035/137/122/large/a-small-kitten-is-sitting-on-the-green-grass-a-small-kitten-runs-on-the-grass-outdoors-in-the-sunlight-domestic-animals-cute-funny-cat-at-home-video.jpg",
+        "tags": []
+    }
+]

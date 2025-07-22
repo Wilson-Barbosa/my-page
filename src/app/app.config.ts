@@ -3,6 +3,7 @@ import { provideRouter, TitleStrategy, withRouterConfig } from '@angular/router'
 
 import { routes } from './app.routes';
 import { PageTitleStrategy } from './shared/PageTitleStrategy';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -10,6 +11,7 @@ export const appConfig: ApplicationConfig = {
         provideZoneChangeDetection({ eventCoalescing: true }),
         provideRouter(routes),
         { provide: TitleStrategy, useClass: PageTitleStrategy },
+        provideHttpClient(),
     ]
 };
 

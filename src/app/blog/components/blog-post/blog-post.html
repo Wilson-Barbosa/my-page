@@ -1,46 +1,44 @@
-<app-header label="Blog-post Title" [size]="2"></app-header>
+<app-header [label]="blogPost.title" [size]="2"></app-header>
 
+<!-- creation and last update section -->
 <div class="text-sm mt-2 text-gray-600">
     <i class="bi bi-calendar3 mr-1"></i>
     <span class="italic">
-        {{ 1752972306167 | fromRawDateToPostedDate }}
+        {{ blogPost.createdTimestampMiliseconds | fromRawDateToPostedDate}}
     </span>
 </div>
 
-<div class="mt-3">
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti earum libero atque impedit voluptas temporibus
-    ullam culpa nisi, nostrum dolore id enim commodi alias mollitia reiciendis fugit. Deleniti maxime inventore, eius
-    totam quos itaque quidem est! Inventore voluptas consectetur vero quaerat enim. Esse nemo quidem id sed mollitia
-    molestiae accusamus at! Ea voluptatibus doloribus quo totam ipsam hic nam, corporis blanditiis incidunt neque sed.
-    Quibusdam placeat tenetur quia numquam officiis corrupti quo sequi! Voluptatibus, adipisci animi! Accusantium vero
-    itaque soluta alias deleniti? Nemo delectus facilis, laborum, commodi minima quam excepturi enim consequatur
-    exercitationem praesentium minus numquam veritatis, alias nulla ex tempore beatae porro velit et veniam autem?
-    Repellat eveniet aperiam mollitia ratione harum deleniti fugit possimus omnis magni impedit iste nihil nulla
-    eligendi, animi eius, perferendis sequi porro architecto! Perferendis, accusamus, ex nostrum, itaque maxime sed in
-    sequi necessitatibus similique repudiandae deleniti suscipit quaerat voluptates sit nam impedit omnis error!
-    Excepturi ex ipsam recusandae nihil minima, molestiae accusantium reiciendis animi mollitia, aut laborum voluptatum
-    consectetur sapiente itaque eius aperiam eaque natus neque, illum incidunt tenetur quia nesciunt eum. Corrupti quae
-    velit culpa reprehenderit vel similique, quas odio adipisci, explicabo, quia optio ab. Iusto, nesciunt. Accusantium
-    voluptate odio ad possimus ducimus exercitationem a quia, tenetur autem quisquam sint similique enim perferendis
-    nobis ipsum sapiente minima neque facere nulla quidem, harum atque doloribus porro ratione? Molestiae, nisi
-    quibusdam. Recusandae temporibus libero numquam? Temporibus beatae aperiam dolores ut labore pariatur, asperiores
-    nobis, ea doloremque aut sit? Quo ea exercitationem ex cupiditate nesciunt reprehenderit neque deserunt velit ad
-    soluta non nemo, maxime pariatur, necessitatibus consectetur recusandae ratione. Libero neque, sint, earum sequi
-    suscipit hic consectetur rem consequuntur cum facere ut. Quibusdam ex et ipsam aperiam non quaerat ea magni. Dolores
-    alias, itaque dolorum, doloribus ad animi voluptate amet saepe tempore laudantium maiores ipsum nesciunt.
+<div class="mt-3 flex flex-col items-center gap-1">
+    <img [src]="blogPost.mainImage" alt="">
+    <p class="text-sm italic">some funny description</p>
 </div>
 
+<!-- the container that holds the body of the post -->
+<div class="mt-5" [innerHTML]="blogPost.body"></div>
 
-<app-header label="Tags" [size]="4"></app-header>
+<hr class="my-3">
+<p class="text-sm italic text-center text-gray-700">
+    Last edited: {{blogPost.createdTimestampMiliseconds | fromRawDateToPostedDate}}
+</p>
 
-<div class="flex gap-3">
-    @for (item of [1, 2, 3, 4]; track $index) {
+<!-- Tags related to this post -->
+<!-- <div class="mt-5">
+    <app-header label="Tags" [size]="4"></app-header>
+
+    <div class="flex gap-3 mt-3">
+        @for (item of [1, 2, 3, 4]; track $index) {
         <app-badge label="item"></app-badge>
-    }
-</div>
-
-
-
-
+        }
+    </div>
+</div> -->
 
 <!-- put similar posts here later -->
+<!-- <div class="mt-10">
+
+    <app-header label="Related posts" [size]="4"></app-header>
+
+    <div class="mt-5">
+        <app-blog-post-card></app-blog-post-card>
+    </div>
+
+</div> -->
