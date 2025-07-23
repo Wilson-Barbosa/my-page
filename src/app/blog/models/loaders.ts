@@ -1,5 +1,6 @@
 import { Observable } from "rxjs";
-import { BlogPostObject } from "./models";
+import { BlogPostObject } from "./post-models";
+
 
 /**
  * Interface that models any class (or Service for that matter) that can fetch

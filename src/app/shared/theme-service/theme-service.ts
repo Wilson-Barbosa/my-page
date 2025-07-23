@@ -16,32 +16,27 @@ export class ThemeService {
     private readonly PRIMARY_FONT: string = "--primary-font-color";
     private readonly SECONDARYY_FONT: string = "--secondary-font-color";
 
+    /**
+     * BehaviorSubject that notifies subscribers about the current theme of the application
+     */
     activeTheme$: BehaviorSubject<string> = new BehaviorSubject(ThemeTypeEnum.LIGHT.toString());
 
     constructor() {
 
         const activeTheme: string | null = this.getThemeFromLocalStorage();
 
-        if (activeTheme === null) {
+        if (activeTheme === null) { // guarantees the default theme will be loaded
             this.setupTheme(ThemeTypeEnum.LIGHT);
-            this.persistThemeOnLocalStorage(ThemeTypeEnum.LIGHT);
+        } else {
+            const theme = ThemeTypeEnum[activeTheme as keyof typeof ThemeTypeEnum];
+            theme ? this.setupTheme(theme): this.setupTheme(ThemeTypeEnum.LIGHT);
         }
 
-    }
-
-    persistThemeOnLocalStorage(theme: ThemeTypeEnum): void {
-        localStorage.setItem(this.LOCAL_STORAGE_THEME_KEY, theme);
-    }
-
-    getThemeFromLocalStorage(): string | null {
-        return localStorage.getItem(this.LOCAL_STORAGE_THEME_KEY);
     }
 
     setupTheme(newTheme: ThemeTypeEnum): void {
         AVAILABLE_THEMES.forEach((theme) => {
             if (newTheme === theme.type) {
-
-                console.log("the theme selected was: " + theme.type);
 
                 document.documentElement.style.setProperty(this.PRIMARY_BACKGROUND, theme.primaryBackground);
                 document.documentElement.style.setProperty(this.SECONDARY_BACKGROUND, theme.secondaryBackground);
@@ -49,22 +44,23 @@ export class ThemeService {
                 document.documentElement.style.setProperty(this.SECONDARYY_FONT, theme.secondaryFont);
 
                 this.updateObsevableTheme(newTheme);
+                this.persistThemeOnLocalStorage(theme.type);
 
                 return;
             }
         });
-
-        // if none if found setup the light one
-        document.documentElement.style.setProperty(this.PRIMARY_BACKGROUND, LIGHT_THEME_COLORS.primaryBackground);
-        document.documentElement.style.setProperty(this.SECONDARY_BACKGROUND, LIGHT_THEME_COLORS.secondaryBackground);
-        document.documentElement.style.setProperty(this.PRIMARY_FONT, LIGHT_THEME_COLORS.primaryFont);
-        document.documentElement.style.setProperty(this.SECONDARYY_FONT, LIGHT_THEME_COLORS.secondaryFont);
-
-        this.updateObsevableTheme(newTheme);
     }
 
-    updateObsevableTheme(theme: ThemeTypeEnum): void {
+    private updateObsevableTheme(theme: ThemeTypeEnum): void {
         this.activeTheme$.next(theme);
+    }
+
+    private persistThemeOnLocalStorage(theme: ThemeTypeEnum): void {
+        localStorage.setItem(this.LOCAL_STORAGE_THEME_KEY, theme);
+    }
+
+    private getThemeFromLocalStorage(): string | null {
+        return localStorage.getItem(this.LOCAL_STORAGE_THEME_KEY);
     }
 
 }

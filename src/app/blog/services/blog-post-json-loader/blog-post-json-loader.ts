@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { BlogPostLoader } from '../../loaders';
+
 import { filter, find, map, Observable, of, throwError } from 'rxjs';
-import { BlogPostObject } from '../../models';
+import { BlogPostObject } from '../../models/post-models';
 import { HttpClient } from '@angular/common/http';
 import { BlogpostCache } from '../blogpost-cache/blogpost-cache';
+import { BlogPostLoader } from '../../models/loaders';
 
 /**
  * Service that fetches blog posts from the assets folder.

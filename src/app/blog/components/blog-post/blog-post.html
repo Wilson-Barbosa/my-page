@@ -1,24 +1,27 @@
-<app-header [label]="blogPost.title" [size]="2"></app-header>
+<app-header [label]="blogPost.title" [size]="2" class="text-(--primary-font-color)"></app-header>
 
 <!-- creation and last update section -->
-<div class="text-sm mt-2 text-gray-600">
+<div class="text-sm mt-2 text-(--secondary-font-color)">
     <i class="bi bi-calendar3 mr-1"></i>
     <span class="italic">
-        {{ blogPost.createdTimestampMiliseconds | fromRawDateToPostedDate}}
+        {{ blogPost.createdTimestampMiliseconds | fromRawDateToPostedDate }}
     </span>
 </div>
 
-<div class="mt-3 flex flex-col items-center gap-1">
+@if(blogPost.mainImage !== undefined) {
+<div class="mt-8 flex flex-col items-center gap-1">
     <img [src]="blogPost.mainImage" alt="">
-    <p class="text-sm italic">some funny description</p>
+    <p class="text-sm italic text-(--secondary-font-color)">some funny description</p>
 </div>
+}
 
 <!-- the container that holds the body of the post -->
-<div class="mt-5" [innerHTML]="blogPost.body"></div>
+<div class="mt-5 text-(--primary-font-color)" [innerHTML]="blogPost.body"></div>
 
-<hr class="my-3">
-<p class="text-sm italic text-center text-gray-700">
-    Last edited: {{blogPost.createdTimestampMiliseconds | fromRawDateToPostedDate}}
+<hr class="my-4 border-(--secondary-font-color)">
+
+<p class="text-sm italic text-center text-(--secondary-font-color)">
+    Last edited: {{ blogPost.createdTimestampMiliseconds | fromRawDateToPostedDate }}
 </p>
 
 <!-- Tags related to this post -->
@@ -33,12 +36,12 @@
 </div> -->
 
 <!-- put similar posts here later -->
-<!-- <div class="mt-10">
+<div class="mt-10">
 
-    <app-header label="Related posts" [size]="4"></app-header>
+    <app-header label="Related posts" [size]="4" class="text-(--primary-font-color)"></app-header>
 
     <div class="mt-5">
-        <app-blog-post-card></app-blog-post-card>
+        <app-blog-post-card [blogPost]="blogPost"></app-blog-post-card>
     </div>
 
-</div> -->
+</div>

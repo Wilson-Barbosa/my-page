@@ -2,16 +2,16 @@
 
     <p>Welcome to my blog</p>
 
-    <div class="cursor-pointer text-(--secondary)">
+    <div class="cursor-pointer text-(--secondary)" >
         @switch (activeTheme) {
             @case (themeEnum.DARK) {
-                <i class="bi bi-moon-stars-fill"></i>
+                <i class="bi bi-moon-stars-fill" (click)="changeAppThemeTo(themeEnum.LIGHT)"></i>
             }
             @case (themeEnum.LIGHT) {
-                <i class="bi bi-sun-fill"></i>
+                <i class="bi bi-sun-fill" (click)="changeAppThemeTo(themeEnum.DARK)"></i>
             }
             @default {
-                <i class="bi bi-sun-fill"></i>
+
             }
         }
     </div>

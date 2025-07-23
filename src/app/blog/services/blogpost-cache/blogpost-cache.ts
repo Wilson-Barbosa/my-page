@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BlogPostObject } from '../../models';
+import { BlogPostObject } from '../../models/post-models';
 import { Observable, of } from 'rxjs';
 
 /**

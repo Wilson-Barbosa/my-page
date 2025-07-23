@@ -25,7 +25,7 @@ export interface ThemeColors {
 export const LIGHT_THEME_COLORS: ThemeColors = {
     type: ThemeTypeEnum.LIGHT,
     primaryBackground: "#FFFFFF",
-    secondaryBackground: "#F5F5F5",
+    secondaryBackground: "#DEDEDE",
     primaryFont: "#1A1A1A",
     secondaryFont: "#555555"
 }

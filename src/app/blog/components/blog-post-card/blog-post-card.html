@@ -1,13 +1,18 @@
-<app-card>
+<app-card extraTailwindClasses="bg-(--secondary-background-color)">
 
-    <img class="overflow-hidden" src="images/cat-in-the-air.jpg" alt="">
+    <img class="overflow-hidden" [src]="blogPost.mainImage" alt="">
 
     <div class="m-3">
-        <app-header label="Some funny title" [size]="6"></app-header>
+        <app-header label="Some funny title" [size]="6" class="text-(--primary-font-color)"></app-header>
 
-        <p class="text-sm italic text-gray-700">Ha 1 mes</p>
+        <p class="mt-1 text-sm italic text-(--secondary-font-color)">
+            <i class="bi bi-calendar3 mr-1"></i>
+            {{blogPost.createdTimestampMiliseconds | fromRawDateToPostedDate}}
+        </p>
 
-        <p class="text-sm mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et nisi, repudiandae...</p>
+        <p class="text-sm mt-4 text-(--primary-font-color)">
+            {{formatPostBodyForDisplay()}}
+        </p>
     </div>
 
 </app-card>

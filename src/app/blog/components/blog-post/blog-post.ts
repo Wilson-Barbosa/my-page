@@ -3,10 +3,10 @@ import { FromRawDateToPostedDatePipe } from "../../../shared/pipes/from-raw-date
 import { Badge } from "../../../shared/components/badge/badge";
 import { Header } from "../../../shared/components/header/header";
 import { BlogPostCard } from "../blog-post-card/blog-post-card";
-import { BlogPostLoader } from '../../loaders';
+import { BlogPostLoader } from '../../models/loaders';
 import { BlogPostJsonLoader } from '../../services/blog-post-json-loader/blog-post-json-loader';
 import { ActivatedRoute, Router, RouterStateSnapshot } from '@angular/router';
-import { BlogPostObject } from '../../models';
+import { BlogPostObject } from '../../models/post-models';
 
 /**
  * Component for a complete post, with title, bodies

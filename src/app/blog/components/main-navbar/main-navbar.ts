@@ -12,20 +12,24 @@ import { ThemeTypeEnum } from '../../../shared/theme-service/theme-models';
 export class MainNavbar implements OnInit, OnDestroy {
 
     private readonly themeService: ThemeService = inject(ThemeService);
+
     activeThemeSubscription!: Subscription;
     activeTheme: string = "";
     themeEnum: typeof ThemeTypeEnum = ThemeTypeEnum; // exposes the whole enum (all its entries)
 
-
     ngOnInit(): void {
         this.activeThemeSubscription = this.themeService.activeTheme$.subscribe({
-            next: (theme) => {
-                this.activeTheme = theme;
-            }
+            next: (theme) => this.activeTheme = theme
         });
     }
 
     ngOnDestroy(): void {
         this.activeThemeSubscription.unsubscribe();
     }
+
+    changeAppThemeTo(theme: ThemeTypeEnum): void {
+        this.themeService.setupTheme(theme);
+    }
+
+
 }
