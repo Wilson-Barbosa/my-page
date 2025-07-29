@@ -1,0 +1,17 @@
+<div class="border-4 text-center py-6 bg-(--primary-background-color)">
+
+    <app-header [size]="3" label="Page not foud" class=""></app-header>
+
+    @if (redirectedLink) {
+    <div class="my-8">
+        <p>Ops, it appears this page:</p>
+        <p class="underline">{{redirectedLink}}</p>
+        <p><b>does not exist</b></p>
+    </div>
+    } @else {
+        <p>Ops, it appears this page does not exist</p>
+    }
+
+    <p class="text-(--primary-font-color)">Go to <a routerLink="/blog" class="underline">home</a></p>
+
+</div>

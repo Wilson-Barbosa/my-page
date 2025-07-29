@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BlogPostObject } from '../../models/post-models';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 /**
  * Service that caches a list of blogposts recovered from the `angular server`.
@@ -26,23 +26,18 @@ export class BlogpostCache {
      * I choose this option though because it was simpler than having to check for null or
      * undefinied on everysingle method, specially to wrap the list in an observable.
      */
-    private postList: BlogPostObject[] | null = null;
+    private postList$ = new BehaviorSubject<BlogPostObject[] | null>(null);
 
     constructor() {
 
     }
 
-    wasCacheInitialized(): boolean {
-        return (this.postList === null);
-    }
-
     setPostListCache(postList: BlogPostObject[]): void {
-        this.postList = postList;
+        this.postList$.next(postList);
     }
 
-    getCachedPostList(): BlogPostObject[] | null {
-        return this.postList;
+    getPostListObservable(): BehaviorSubject<BlogPostObject[] | null> {
+        return this.postList$;
     }
-
 
 }

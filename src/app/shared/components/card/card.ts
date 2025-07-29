@@ -4,14 +4,11 @@ import { Component, Input, OnInit } from '@angular/core';
     selector: 'app-card',
     imports: [],
     templateUrl: './card.html',
-    styleUrl: './card.css',
-    host: {
-        '[class]': 'extraTailwindClasses'
-    }
+    styleUrl: './card.css'
 })
 export class Card implements OnInit {
 
-    @Input() extraTailwindClasses: string = "";
+    @Input() extraClasses: string = "";
 
     ngOnInit(): void {
 

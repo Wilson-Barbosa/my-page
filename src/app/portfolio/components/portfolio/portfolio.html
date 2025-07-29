@@ -46,7 +46,7 @@
 
     <!-- collapse menu icon -->
     <i class="md:hidden bi bi-list text-white py-1 px-2 transition-all duration-300"
-        [ngClass]="{'-rotate-90': isNavbarCollapsed}"></i>
+        [ngClass]="{'-rotate-90': isNavbarCollapsed}" (click)="toggleNavBarCollapsed()"></i>
 </nav>
 
 <!-- Intro section -->

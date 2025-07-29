@@ -1,7 +1,6 @@
 import { Observable } from "rxjs";
 import { BlogPostObject } from "./post-models";
 
-
 /**
  * Interface that models any class (or Service for that matter) that can fetch
  * and return posts or post related data
@@ -15,5 +14,14 @@ export interface BlogPostLoader {
      */
     getBlogPostById(postId: number): Observable<BlogPostObject>;
 
+    /**
+     * Returns an observable with the latest post created
+     */
+    getLatestPost(): Observable<BlogPostObject>;
+
+    /**
+     * Returns an observable with a list of blog posts
+     */
+    getListOfPosts(): Observable<BlogPostObject[]>;
 }
 

@@ -1,12 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Header } from "../../../shared/components/header/header";
+import { PText } from "../p-text/p-text";
+import { BlogPostObject } from '../../models/post-models';
+import { BlogPostLoader } from '../../models/loaders';
+import { BlogPostJsonLoader } from '../../services/blog-post-json-loader/blog-post-json-loader';
+import { BlogPostCard } from "../blog-post-card/blog-post-card";
+import { Card } from "../../../shared/components/card/card";
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  imports: [Header],
-  templateUrl: './home.html',
-  styleUrl: './home.css'
+    selector: 'app-home',
+    imports: [Header, PText, BlogPostCard, Card, RouterLink],
+    templateUrl: './home.html',
+    styleUrl: './home.css'
 })
-export class Home {
+export class Home implements OnInit, OnDestroy {
+
+    private readonly blogPostLoader: BlogPostLoader = inject(BlogPostJsonLoader);
+
+    latestBlogPost!: BlogPostObject;
+    blogPostList!: BlogPostObject[];
+
+    ngOnInit(): void {
+        this.loadLastPostCreated();
+        this.loadLastPostsCreated();
+    }
+
+    ngOnDestroy(): void {
+
+    }
+
+    /** loads the latest post created */
+    loadLastPostCreated(): void {
+        this.blogPostLoader.getLatestPost().subscribe({
+            next: (post) => this.latestBlogPost = post
+        });
+    }
+
+    /** loas a list of posts */
+    loadLastPostsCreated(): void {
+        this.blogPostLoader.getListOfPosts().subscribe({
+            next: (posts) => this.blogPostList = posts
+        });
+    }
+
 
 }

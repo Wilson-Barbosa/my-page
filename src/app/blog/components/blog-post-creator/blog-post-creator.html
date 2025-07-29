@@ -1,0 +1,102 @@
+<div class="sm:mx-6 md:mx-15 lg:mx-30 xl:mx-70 mb-15 mt-3">
+    <app-header label="My experience with Linux" [size]="2" class="text-(--primary-font-color)"></app-header>
+
+    <div class="text-sm mt-2 text-(--secondary-font-color)">
+        <i class="bi bi-calendar3 mr-1"></i>
+        <span class="italic">
+            {{ 1753721536307 | fromUnixEpochMilisecondsToDayMonthYear }}
+            {{ 1753721536307 | fromUnixEpochMilisecondsToCustomTimeAgo}}
+        </span>
+    </div>
+
+    <app-image src="https://www.locaweb.com.br/blog/wp-content/uploads/2022/05/linux-ou-windows-para-programar.png"
+        extraTailwindClasses="my-10"></app-image>
+
+    <div class="mt-5 text-(--primary-font-color) text-justify">
+
+        <app-p-text>
+            This is my first post here and I would like to talk about my personal experience with desktop-linux.
+        </app-p-text>
+
+        <app-p-text>
+            As it's the case with many people I was always a Windows user. Without a doubt, windows it's a great
+            operating system, it has many out-of-the-box features that make it the <i>de facto</i> desktop operating
+            system for most users. The reasons for this dominance are many, and in my opinion the large amount of
+            compatipatible applications is the primary reason for its success.
+        </app-p-text>
+
+        <app-p-text>
+            Because windows is made to satify the need of a large consumer base it ships with many apps that a user
+            might not want or need initially. You pay convinience of use with <i>bloat</i> and potiatilly the overuse of
+            resources of your machine.
+        </app-p-text>
+
+        <app-p-text>
+            Once I started coding windows became quite frustrating. My PC is a low-end one, with a hard drive and a
+            quite old CPU, so the the system would freeze and lag A LOT, especially with one or two vscode screens open,
+            language servers running in the background and potentially more than one local server running. This quicly
+            became too much for my machine to handle and a resource-hungry OS like windows didn't help a bit.
+        </app-p-text>
+
+        <app-p-text>
+            Things changed a bit when I switched to linux Ubuntu and at first it seemed better, but for my surprise my
+            experience became worse than with windows. That happened because of a feature called <b>memory swapping</b>.
+            Memory swapping allows the OS to use the pc's SSD or hard-drive as temporary memory, effectively extending
+            the available RAM if the latter runs out of space. This can slow down the computer, because IO operations
+            are orders of magnitude slower than RAM operations.
+        </app-p-text>
+
+        <app-p-text>
+            First I upgraded my RAM from 8gb to 16gb and while that helped immensilly my experience was not ideal still.Then, I finally found the best OS until now, at least the best one for my needs, a Ubuntu-based distribution
+            called <b>Lubuntu</b>, from which I'm writting this post.
+        </app-p-text>
+
+        <app-image
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikbMl3hENWvJNDoL45Sxfl8xAiIdU_2BXVO-g1B5RQh3ljHQfT6P-7_8qHnS-xaKfJx5lRs919bnLD8k7SQ8MwkFVa1W4jtqCwyMnG6ByOt-L3lz-ywT-2hUFpv9J8nJm2imVEyUwPhT5l/s1600/2018-12-14-102254_1366x768_scrot.png"
+            caption="lubuntu desktop screen" alt="lubuntu desktop screen"></app-image>
+
+        <app-p-text>
+            Lubuntu provided me the with everything I needed:
+
+            <ol class="list-decimal ml-5 sm:ml-10 mt-3">
+                <li>An operating system with excellent GUI</li>
+                <li>Low CPU and memory usage</li>
+                <li>Fast, lightweight and reliable</li>
+                <li>Ubuntu-based distro with high app compatibility</li>
+            </ol>
+        </app-p-text>
+
+        <app-p-text>
+            Lubuntu with is similar to windows, more so than ubuntu with the GNOME GUI, but it uses <b>LXQt</b>, a
+            lightweight desktop environment that demands very little of your RAM and CPU. Of course, you don't have
+            animations, smooth transitions and other graphical features that many other desktop environments have. For
+            me this is not a problem and, to be honest, I didn't even notice it until I've read the official docs.
+        </app-p-text>
+
+        <app-p-text>
+            In the future I might install even lighter distros, but even now I'm extremely happy to experience freedom
+            and power I haven't felt using other OSs to the point that when I upgrade my current machine I will, most
+            likely, install Lubuntu again.
+        </app-p-text>
+
+        <app-p-text>
+            If by any chance you want to experience this distro feel free to install it or try the live version, that
+            runs on any bootable device and it's available at the <a class="underline text-blue-600"
+                href="https://lubuntu.me/" target="_blank">official website</a>.
+        </app-p-text>
+
+        <app-p-text>
+            Have a nice day and God bless!
+        </app-p-text>
+    </div>
+
+    <hr class="my-4 border-(--secondary-font-color)">
+
+    <p class="text-sm italic text-center md:text-end text-(--secondary-font-color)">
+        Last edited:
+        {{ 1753721536307 | fromUnixEpochMilisecondsToDayMonthYear }} at
+        {{ 1753721536307 | fromUnixEpochMilisecondsToHourMinuteSecond }}
+    </p>
+
+
+</div>

@@ -2,7 +2,7 @@
     {
         "id": 1,
         "title": "This is the blog title",
-        "body": "The body of the post is this. There's also the possibility of inserting an html element, like <b>this bold text</b>",
+        "body": "The body of the post is this. There's also the possibility of inserting an html element, like <b>this bold text</b>. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis voluptates ex, eius, maiores eos esse repudiandae quod ipsa aut quos totam laborum unde pariatur tempore adipisci dolore corrupti possimus aperiam incidunt quasi? Sit delectus, in expedita perspiciatis excepturi quibusdam pariatur laboriosam aperiam. Magni commodi ea tempore minima deserunt iure? Fugit nesciunt, corporis veniam facere possimus atque molestias. Unde eos cum aliquid dignissimos harum consequuntur quisquam delectus quibusdam, deserunt cumque accusantium, culpa rerum nisi in ea. Repellat ullam eum et magni error similique quasi, est vel tempora nam dicta consectetur delectus nisi nulla accusantium. Tempore, placeat nostrum. Aperiam, rerum? Sunt, magni. <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis sunt minus atque nemo vel at obcaecati provident alias, delectus modi!</p>",
         "createdTimestampMiliseconds": 1752972306167,
         "lastUpdatedTimestampMiliseconds": 1752972306167,
         "mainImage": "https://static.vecteezy.com/system/resources/thumbnails/035/137/122/large/a-small-kitten-is-sitting-on-the-green-grass-a-small-kitten-runs-on-the-grass-outdoors-in-the-sunlight-domestic-animals-cute-funny-cat-at-home-video.jpg",
@@ -15,7 +15,7 @@
         "body": "The body of the post is this. There's also the possibility of inserting an html element, like <b>this bold text</b>",
         "createdTimestampMiliseconds": 1752972306167,
         "lastUpdatedTimestampMiliseconds": 1752972306167,
-        "mainImage": "https://static.vecteezy.com/system/resources/thumbnails/035/137/122/large/a-small-kitten-is-sitting-on-the-green-grass-a-small-kitten-runs-on-the-grass-outdoors-in-the-sunlight-domestic-animals-cute-funny-cat-at-home-video.jpg",
+        "mainImage": "https://www.parksidevet.ca/blog/wp-content/uploads/2022/02/iStock-820785498-1024x652.jpg",
         "tags": []
     }
 ]

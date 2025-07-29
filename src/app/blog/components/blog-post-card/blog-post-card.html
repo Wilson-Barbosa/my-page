@@ -1,18 +1,24 @@
-<app-card extraTailwindClasses="bg-(--secondary-background-color)">
+<a [routerLink]="['/blog/posts', blogPost.id]"
+    (mouseenter)="handleOnMouseEnterCard()"
+    (mouseleave)="handleOnMouseExitCard()"
+    >
+    <app-card extraTailwindClasses="bg-(--secondary-background-color)">
 
-    <img class="overflow-hidden" [src]="blogPost.mainImage" alt="">
+        <img class="overflow-hidden w-full h-auto" [src]="blogPost.mainImage" alt="">
 
-    <div class="m-3">
-        <app-header label="Some funny title" [size]="6" class="text-(--primary-font-color)"></app-header>
+        <div class="m-3">
+            <app-header label="Some funny title" [size]="5" class="text-(--primary-font-color)"></app-header>
 
-        <p class="mt-1 text-sm italic text-(--secondary-font-color)">
-            <i class="bi bi-calendar3 mr-1"></i>
-            {{blogPost.createdTimestampMiliseconds | fromRawDateToPostedDate}}
-        </p>
+            <p class="mt-1 text-sm italic text-(--secondary-font-color)">
+                <i class="bi bi-calendar3 mr-1"></i>
+                {{ blogPost.createdTimestampMiliseconds | fromUnixEpochMilisecondsToDayMonthYear}}
+            </p>
 
-        <p class="text-sm mt-4 text-(--primary-font-color)">
-            {{formatPostBodyForDisplay()}}
-        </p>
-    </div>
+            <p class="text-sm mt-4 text-(--primary-font-color)"
+               [ngClass]="{'underline': displayUnderlineEffectOnElement}">
+                {{ formatPostBodyForDisplay() }}
+            </p>
+        </div>
 
-</app-card>
+    </app-card>
+</a>

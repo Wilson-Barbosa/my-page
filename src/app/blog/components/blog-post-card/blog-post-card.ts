@@ -2,11 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Card } from "../../../shared/components/card/card";
 import { Header } from "../../../shared/components/header/header";
 import { BlogPostObject } from '../../models/post-models';
-import { FromRawDateToPostedDatePipe } from "../../../shared/pipes/from-raw-date-to-posted-date-pipe";
+import { RouterLink } from '@angular/router';
+import { NgClass } from '@angular/common';
+import { FromUnixEpochMilisecondsToDayMonthYearPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-day-month-year-pipe";
 
 @Component({
     selector: 'app-blog-post-card',
-    imports: [Card, Header, FromRawDateToPostedDatePipe],
+    imports: [Card, Header, RouterLink, NgClass, FromUnixEpochMilisecondsToDayMonthYearPipe],
     templateUrl: './blog-post-card.html',
     styleUrl: './blog-post-card.css'
 })
@@ -14,7 +16,7 @@ export class BlogPostCard implements OnInit {
 
     /** The post object to be rendered */
     @Input({ required: true }) blogPost!: BlogPostObject;
-
+    displayUnderlineEffectOnElement: boolean = false;
 
     ngOnInit(): void {
         this.formatPostBodyForDisplay();
@@ -23,13 +25,14 @@ export class BlogPostCard implements OnInit {
     formatPostBodyForDisplay(): string {
 
         const htmlBodyAsString: string = this.blogPost.body;
-
-        // grab, let's say, the first 100 characters from the body
-
-        // remove any html tags (anything with <>)
-
-        // return the resulting string capped at lenght 70 appended with ...
-
         return htmlBodyAsString.slice(0, 65).concat("...");
+    }
+
+    handleOnMouseEnterCard(): void {
+        this.displayUnderlineEffectOnElement = true;
+    }
+
+    handleOnMouseExitCard(): void {
+        this.displayUnderlineEffectOnElement = false;
     }
 }

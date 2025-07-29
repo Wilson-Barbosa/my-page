@@ -1,3 +1,14 @@
-<p>breadcrumb works!</p>
+<div class="text-(--secondary-font-color) flex gap-2 mt-7 mb-10 text-sm">
 
-<i class="bi bi-chevron-right"></i>
+    @for (item of breadcrumbList; track $index) {
+        <div>
+            <i [class]="item.bootstrapIconClass"></i>
+            <span class="ml-1">{{item.message}}</span>
+        </div>
+
+        <i class="bi bi-chevron-right"></i>
+    }
+
+</div>
+
+

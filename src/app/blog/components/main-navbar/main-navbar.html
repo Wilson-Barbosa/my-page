@@ -1,19 +1,70 @@
-<nav class="flex items-center justify-between px-3 py-2 text-white bg-(--primary-darker)">
+<nav class="flex items-center justify-between px-2 py-1 sm:px-5 sm:py-2 text-white bg-(--primary-darker)">
 
-    <p>Welcome to my blog</p>
+    <div class="flex gap-2 items-center justify-center">
+        <img class="w-7 h-auto mb-1" src="images/logo.png" alt="">
+        <p class="text-(--secondary-darker) font-semibold">Blog</p>
+    </div>
 
-    <div class="cursor-pointer text-(--secondary)" >
+    <ul class="hidden md:flex gap-8">
+        <li><a routerLinkActive="active-navbar-item" routerLink="home">Home</a></li>
+        <li><a routerLinkActive="active-navbar-item" routerLink="posts">Posts</a></li>
+        <li><a routerLinkActive="active-navbar-item" routerLink="updates">Updates</a></li>
+        <li><a routerLinkActive="active-navbar-item" routerLink="/portfolio">Portfolio</a></li>
+    </ul>
+
+    <!-- put the language option here later -->
+
+    <div class="hidden md:block cursor-pointer text-(--secondary) text-sm">
         @switch (activeTheme) {
+        @case (themeEnum.DARK) {
+        <span (click)="changeAppThemeTo(themeEnum.LIGHT)">Dark<i class="bi bi-moon-stars-fill ml-2"></i></span> }
+        @case (themeEnum.LIGHT) {
+        <span (click)="changeAppThemeTo(themeEnum.DARK)">Light<i class="bi bi-sun-fill ml-2"></i></span>
+        }
+        @default {
+
+        }
+        }
+    </div>
+
+    <!-- collapse menu icon -->
+    <i class="md:hidden bi bi-list text-white py-1 px-2 transition-all duration-300"
+        [ngClass]="{'-rotate-90': isNavbarCollapsed}" (click)="toggleNavBarCollapsed()"></i>
+
+
+</nav>
+
+<!-- mobile nav bar -->
+<ul class="flex flex-col items-center md:hidden bg-(--primary) text-white w-full absolute top-10 sm:top-12 left-0 transition-all duration-300"
+    [ngClass]="{
+        'max-h-0 opacity-0 pointer-events-none': !isNavbarCollapsed,
+        'max-h-96 opacity-100 pointer-events-auto': isNavbarCollapsed
+    }">
+    <li class="p-3">
+        <a routerLinkActive="active-navbar-item" routerLink="home" (click)="toggleNavBarCollapsed()">Home</a>
+    </li>
+    <li class="p-3">
+        <a routerLinkActive="active-navbar-item" routerLink="posts" (click)="toggleNavBarCollapsed()">Posts</a>
+    </li>
+    <li class="p-3">
+        <a routerLinkActive="active-navbar-item" routerLink="updates" (click)="toggleNavBarCollapsed()">Updates</a>
+    </li>
+    <li class="p-3">
+        <a routerLinkActive="active-navbar-item" routerLink="/portfolio" (click)="toggleNavBarCollapsed()">Portfolio</a>
+    </li>
+    <li class="p-3">
+        <div class="cursor-pointer text-(--secondary)">
+            @switch (activeTheme) {
             @case (themeEnum.DARK) {
-                <i class="bi bi-moon-stars-fill" (click)="changeAppThemeTo(themeEnum.LIGHT)"></i>
+            <span (click)="changeAppThemeTo(themeEnum.LIGHT)">Dark<i class="bi bi-moon-stars-fill ml-2"></i></span>
             }
             @case (themeEnum.LIGHT) {
-                <i class="bi bi-sun-fill" (click)="changeAppThemeTo(themeEnum.DARK)"></i>
+            <span (click)="changeAppThemeTo(themeEnum.DARK)">Light<i class="bi bi-sun-fill ml-2"></i></span>
             }
             @default {
 
             }
-        }
-    </div>
-
-</nav>
+            }
+        </div>
+    </li>
+</ul>

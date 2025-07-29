@@ -1,21 +1,23 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
-import { FromRawDateToPostedDatePipe } from "../../../shared/pipes/from-raw-date-to-posted-date-pipe";
+import { Component, inject, OnInit } from '@angular/core';
 import { Badge } from "../../../shared/components/badge/badge";
 import { Header } from "../../../shared/components/header/header";
 import { BlogPostCard } from "../blog-post-card/blog-post-card";
 import { BlogPostLoader } from '../../models/loaders';
 import { BlogPostJsonLoader } from '../../services/blog-post-json-loader/blog-post-json-loader';
-import { ActivatedRoute, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlogPostObject } from '../../models/post-models';
+import { Image } from "../image/image";
+import { FromUnixEpochMilisecondsToDayMonthYearPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-day-month-year-pipe";
+import { FromUnixEpochMilisecondsToHourMinuteSecondPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-hour-minute-second-pipe";
 
 /**
  * Component for a complete post, with title, bodies
  */
 @Component({
-  selector: 'app-blog-post',
-  imports: [FromRawDateToPostedDatePipe, Badge, Header, BlogPostCard],
-  templateUrl: './blog-post.html',
-  styleUrl: './blog-post.css'
+    selector: 'app-blog-post',
+    imports: [Badge, Header, BlogPostCard, Image, FromUnixEpochMilisecondsToDayMonthYearPipe, FromUnixEpochMilisecondsToHourMinuteSecondPipe],
+    templateUrl: './blog-post.html',
+    styleUrl: './blog-post.css'
 })
 export class BlogPost implements OnInit {
 
@@ -33,27 +35,21 @@ export class BlogPost implements OnInit {
     }
 
     /**
-     * Recovers a postId from the URL (as a parameter) and calls the service to load the correspondent blog instance.
-     *
-     * If
+     * Recovers a postId from the URL (as a parameter) and calls the service
+     * to load the correspondent blog instance.
      */
     loadBlogPost(): void {
         const postId: string | null = this.activatedRoute.snapshot.paramMap.get(this.POST_ID_URL_PARAM_NAME);
 
-        // console.log("the postId from the url is: " + postId);
-
-        if(postId !== null) {
-            this.blogPostLoader.getBlogPostById(Number(postId)).subscribe({
-                next: (post) => this.blogPost = post,
-                error: (err) => console.log(err)
-            });
-        } else {
-            // if, for some reason an id is not provided redirect to another page
-        }
+        this.blogPostLoader.getBlogPostById(Number(postId)).subscribe({
+            next: (post) => this.blogPost = post,
+            error: (err) => this.redirectToNotFoundPage()
+        });
     }
 
     redirectToNotFoundPage(): void {
-        this.router.navigateByUrl("not-found");
+        this.router.navigateByUrl("blog");
     }
+
 
 }
