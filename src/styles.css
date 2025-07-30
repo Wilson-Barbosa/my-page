@@ -22,11 +22,12 @@ html {
     scroll-behavior: smooth;
 }
 
+/* -------------------------- used to apply styling to elements that are active inside a navbar -------------------------- */
 .active-navbar-item {
     color: var(--secondary-darker);
 }
 
-/* I got this from https://cssloaders.github.io/ */
+/* -------------------------- I got this from https://cssloaders.github.io/ -------------------------- */
 .loader-spinner {
     width: 48px;
     height: 48px;
@@ -48,3 +49,35 @@ html {
     }
 }
 
+/* -------------------------- responsive styling for paragraphs (from tailwind) -------------------------- */
+/* -- These classes can (and should) be used by components that are displayed inside [innethtml] bidings -- */
+.p-text {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+}
+
+/* sm-breakpoint */
+@media (min-width: 40rem) {
+    .p-text {
+        font-size: 1rem;
+    }
+}
+
+.figure-image {
+    margin-top: 1rem;
+}
+
+.figure-image > figcaption {
+    display: none;
+    font-size: 0.875rem;
+    margin-top: 0.750rem;
+    text-align: center;
+    font-style: italic;
+}
+
+/* sm-breakpoint */
+@media (min-width: 40rem) {
+    .figure-image > figcaption {
+        display: block;
+    }
+}

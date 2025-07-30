@@ -6,9 +6,9 @@
         <i class="bi bi-calendar3 mr-1"></i>
         <span class="italic">
             {{ blogPost.createdTimestampMiliseconds | fromUnixEpochMilisecondsToDayMonthYear }}
+            {{ blogPost.createdTimestampMiliseconds | fromUnixEpochMilisecondsToCustomTimeAgo }}
         </span>
     </div>
-
 
     @if(blogPost.mainImage !== undefined) {
     <app-image [src]="blogPost.mainImage.src" [caption]="blogPost.mainImage.caption"
@@ -16,7 +16,7 @@
     }
 
     <!-- the container that holds the body of the post -->
-    <div class="mt-5 text-(--primary-font-color)" [innerHTML]="blogPost.body"></div>
+    <div class="mt-5 text-(--primary-font-color) text-justify" [innerHTML]="blogPost.body"> </div>
 
     <hr class="my-4 border-(--secondary-font-color)">
 

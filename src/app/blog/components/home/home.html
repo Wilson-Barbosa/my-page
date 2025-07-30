@@ -14,7 +14,8 @@
             <app-header [size]="4" label="This blog" class="text-(--primary-font-color)"></app-header>
 
             <app-p-text class="text-(--primary-font-color)">
-                Personal expression is a deeply human need, my expression here is done with words. I enjoy writing very much and although I don't like
+                Personal expression is a deeply human need, my expression here is done with words. I enjoy writing very
+                much and although I don't like
                 social media and have little to no presence in it, I still would like to create something that
                 other people might see one day.
             </app-p-text>
@@ -34,27 +35,27 @@
         <app-header [size]="4" label="Latest post" class="text-(--primary-font-color)"></app-header>
         <br>
         @if (latestBlogPost) {
-            <app-card>
-                <div class="m-6">
-                    <app-header [size]="3" [label]="latestBlogPost.title" class="text-(--primary-font-color)"></app-header>
-                    @if(latestBlogPost.mainImage) {
-                        <img class="my-6" [src]="latestBlogPost.mainImage" alt="">
-                    }
+        <app-card>
+            <div class="m-6">
+                <app-header [size]="3" [label]="latestBlogPost.title" class="text-(--primary-font-color)"></app-header>
+                @if(latestBlogPost.mainImage) {
+                <img class="my-6" [src]="latestBlogPost.mainImage.src" alt="">
+                }
 
-                    <app-p-text class="text-(--primary-font-color)">
-                        {{latestBlogPost.body}}
-                    </app-p-text>
+                <app-p-text class="text-(--primary-font-color)">
+                    {{ latestBlogPost.body | fromBlogTextHtmlToText:300 }}
+                </app-p-text>
 
-                    <a [routerLink]="['/blog/posts', latestBlogPost.id]"
-                       class="text-(--secondary-font-color) text-sm mt-5 flex justify-end gap-2 hover:underline hover:cursor-pointer">
-                        <span>Continue reading</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </app-card>
+                <a [routerLink]="['/blog/posts', latestBlogPost.id]"
+                    class="text-(--secondary-font-color) text-sm mt-5 flex justify-end gap-2 hover:underline hover:cursor-pointer">
+                    <span>Continue reading</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </app-card>
         }
         @else {
-            <app-p-text class="text-(--primary-font-color)">No post available</app-p-text>
+        <app-p-text class="text-(--primary-font-color)">No post available</app-p-text>
         }
 
     </section>
@@ -70,16 +71,16 @@
         </div>
 
         @if (blogPostList) {
-            <div class="flex flex-wrap justify-center sm:justify-start gap-7 my-5">
-                @for (post of blogPostList; track $index) {
-                    <div class="w-70">
-                        <app-blog-post-card [blogPost]="post"></app-blog-post-card>
-                    </div>
-                }
+        <div class="flex flex-wrap justify-center sm:justify-start gap-7 my-5">
+            @for (post of blogPostList; track $index) {
+            <div class="w-70">
+                <app-blog-post-card [blogPost]="post"></app-blog-post-card>
             </div>
+            }
+        </div>
         }
         @else {
-            <app-p-text class="text-(--primary-font-color)">No post available</app-p-text>
+        <app-p-text class="text-(--primary-font-color)">No post available</app-p-text>
         }
     </section>
 </div>

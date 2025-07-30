@@ -1,9 +1,9 @@
 import { Observable } from "rxjs";
-import { BlogPostObject } from "./post-models";
+import { BlogPostObject, PostTag } from "./post-models";
 
 /**
  * Interface that models any class (or Service for that matter) that can fetch
- * and return posts or post related data
+ * and return posts or post related data.
  */
 export interface BlogPostLoader {
 
@@ -22,6 +22,18 @@ export interface BlogPostLoader {
     /**
      * Returns an observable with a list of blog posts
      */
-    getListOfPosts(): Observable<BlogPostObject[]>;
+    getListOfPostsAsObservable(): Observable<BlogPostObject[]>;
 }
 
+/**
+ * Interface that models any class (or Service for that matter) that can fetch
+ * and return post tags.
+ */
+export interface TagPostLoader {
+
+    /**
+     * Returns an observable with a list of all available tags
+     */
+    getTagPostList(): Observable<PostTag[]>
+
+}

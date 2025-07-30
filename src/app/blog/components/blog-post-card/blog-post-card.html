@@ -4,19 +4,19 @@
     >
     <app-card extraTailwindClasses="bg-(--secondary-background-color)">
 
-        <img class="overflow-hidden w-full h-auto" [src]="blogPost.mainImage" alt="">
+        <img class="overflow-hidden w-full h-auto" [src]="blogPost.mainImage?.src" alt="">
 
         <div class="m-3">
-            <app-header label="Some funny title" [size]="5" class="text-(--primary-font-color)"></app-header>
+            <app-header [label]="blogPost.title" [size]="5" class="text-(--primary-font-color)"></app-header>
 
             <p class="mt-1 text-sm italic text-(--secondary-font-color)">
                 <i class="bi bi-calendar3 mr-1"></i>
-                {{ blogPost.createdTimestampMiliseconds | fromUnixEpochMilisecondsToDayMonthYear}}
+                {{ blogPost.createdTimestampMiliseconds | fromUnixEpochMilisecondsToDayMonthYear }}
             </p>
 
             <p class="text-sm mt-4 text-(--primary-font-color)"
                [ngClass]="{'underline': displayUnderlineEffectOnElement}">
-                {{ formatPostBodyForDisplay() }}
+                {{ blogPost.body | fromBlogTextHtmlToText }}
             </p>
         </div>
 

@@ -9,13 +9,15 @@ import { BlogPostObject } from '../../models/post-models';
 import { Image } from "../image/image";
 import { FromUnixEpochMilisecondsToDayMonthYearPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-day-month-year-pipe";
 import { FromUnixEpochMilisecondsToHourMinuteSecondPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-hour-minute-second-pipe";
+import { PText } from '../p-text/p-text';
+import { FromUnixEpochMilisecondsToCustomTimeAgoPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-custom-time-ago-pipe";
 
 /**
  * Component for a complete post, with title, bodies
  */
 @Component({
     selector: 'app-blog-post',
-    imports: [Badge, Header, BlogPostCard, Image, FromUnixEpochMilisecondsToDayMonthYearPipe, FromUnixEpochMilisecondsToHourMinuteSecondPipe],
+    imports: [Header, BlogPostCard, Image, FromUnixEpochMilisecondsToDayMonthYearPipe, FromUnixEpochMilisecondsToHourMinuteSecondPipe, FromUnixEpochMilisecondsToCustomTimeAgoPipe],
     templateUrl: './blog-post.html',
     styleUrl: './blog-post.css'
 })

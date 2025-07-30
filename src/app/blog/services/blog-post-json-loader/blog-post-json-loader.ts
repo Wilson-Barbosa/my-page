@@ -69,7 +69,7 @@ export class BlogPostJsonLoader implements BlogPostLoader {
         )
     }
 
-    getListOfPosts(): Observable<BlogPostObject[]> {
+    getListOfPostsAsObservable(): Observable<BlogPostObject[]> {
         return this.httpClient.get<BlogPostObject[]>(this.BLOG_POST_JSON_NAME);
     }
 

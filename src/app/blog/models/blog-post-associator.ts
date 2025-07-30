@@ -15,6 +15,6 @@ export interface BlogPostAssociator {
      *
      * @param post the post you want to check for similarities
      */
-    loadRelatedPostsTo(post: BlogPostObject): Observable<BlogPostObject>;
+    loadRelatedPostsTo(post: BlogPostObject): Observable<BlogPostObject[]>;
 
 }

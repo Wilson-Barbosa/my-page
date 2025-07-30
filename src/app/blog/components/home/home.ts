@@ -7,10 +7,11 @@ import { BlogPostJsonLoader } from '../../services/blog-post-json-loader/blog-po
 import { BlogPostCard } from "../blog-post-card/blog-post-card";
 import { Card } from "../../../shared/components/card/card";
 import { RouterLink } from '@angular/router';
+import { FromBlogTextHtmlToTextPipe } from "../../../shared/pipes/from-blog-text-html-to-text-pipe";
 
 @Component({
     selector: 'app-home',
-    imports: [Header, PText, BlogPostCard, Card, RouterLink],
+    imports: [Header, PText, BlogPostCard, Card, RouterLink, FromBlogTextHtmlToTextPipe],
     templateUrl: './home.html',
     styleUrl: './home.css'
 })
@@ -39,7 +40,7 @@ export class Home implements OnInit, OnDestroy {
 
     /** loas a list of posts */
     loadLastPostsCreated(): void {
-        this.blogPostLoader.getListOfPosts().subscribe({
+        this.blogPostLoader.getListOfPostsAsObservable().subscribe({
             next: (posts) => this.blogPostList = posts
         });
     }

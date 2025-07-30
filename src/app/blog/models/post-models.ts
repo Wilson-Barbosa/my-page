@@ -7,7 +7,12 @@ export interface BlogPostObject {
     /** The title for the post */
     title: string;
 
-    /** A string representing the body of the post. It may contain html tags inside it */
+    /**
+     * A string representing the body of the post. It may contain html tags inside it.
+     *
+     * Don't use angular components inside the body, as angular won't render then inside
+     * `[innerHtml]` binding. Instead, use standard html tags and css.
+     */
     body: string;
 
     /** When the post was created in miliseconds using unix epoch */
@@ -37,7 +42,7 @@ export interface WeightedPostTag extends PostTag {
 
     /**
      * Defines how `specific` a certain tag is. More general ones might have values like 1 or 2
-     * and specific ones might be defined with 5 or 6, for example
+     * and specific ones might be defined with 5 or 6 for example.
      */
     weight: number;
 }

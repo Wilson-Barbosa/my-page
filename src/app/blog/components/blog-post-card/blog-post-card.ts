@@ -5,10 +5,11 @@ import { BlogPostObject } from '../../models/post-models';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { FromUnixEpochMilisecondsToDayMonthYearPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-day-month-year-pipe";
+import { FromBlogTextHtmlToTextPipe } from "../../../shared/pipes/from-blog-text-html-to-text-pipe";
 
 @Component({
     selector: 'app-blog-post-card',
-    imports: [Card, Header, RouterLink, NgClass, FromUnixEpochMilisecondsToDayMonthYearPipe],
+    imports: [Card, Header, RouterLink, NgClass, FromUnixEpochMilisecondsToDayMonthYearPipe, FromBlogTextHtmlToTextPipe],
     templateUrl: './blog-post-card.html',
     styleUrl: './blog-post-card.css'
 })
@@ -19,13 +20,7 @@ export class BlogPostCard implements OnInit {
     displayUnderlineEffectOnElement: boolean = false;
 
     ngOnInit(): void {
-        this.formatPostBodyForDisplay();
-    }
 
-    formatPostBodyForDisplay(): string {
-
-        const htmlBodyAsString: string = this.blogPost.body;
-        return htmlBodyAsString.slice(0, 65).concat("...");
     }
 
     handleOnMouseEnterCard(): void {
