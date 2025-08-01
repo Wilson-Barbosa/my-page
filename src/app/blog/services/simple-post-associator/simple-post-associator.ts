@@ -4,9 +4,12 @@ import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { BlogPostObject } from '../../models/post-models';
 import { BlogPostJsonLoader } from '../blog-post-json-loader/blog-post-json-loader';
 
-
 /**
- * Service that
+ * Service that finds a collection of posts related to a another one using a very simple algorithm.
+ *
+ * It does it by getting the tags from a source post and a target post. If the posts have a mininum
+ * amout of matching tags they are consider related. Note that this considers only the matching tags
+ * between both of them, it doesn't care about the tag count of each of them.
  */
 @Injectable({
     providedIn: 'root'

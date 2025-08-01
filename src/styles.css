@@ -67,7 +67,7 @@ html {
     margin-top: 1rem;
 }
 
-.figure-image > figcaption {
+.figure-image>figcaption {
     display: none;
     font-size: 0.875rem;
     margin-top: 0.750rem;
@@ -77,7 +77,73 @@ html {
 
 /* sm-breakpoint */
 @media (min-width: 40rem) {
-    .figure-image > figcaption {
+    .figure-image>figcaption {
         display: block;
     }
+}
+
+.header-1 {
+    font-size: 2.25rem;
+    line-height: 1.1111;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+.header-2 {
+    font-size: 1.875rem;
+    line-height: 1.3333;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+
+.header-3 {
+    font-size: 1.5rem;
+    line-height: 1.3333;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+
+.header-4 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+}
+
+.header-5 {
+    font-size: 1.125rem;
+    line-height: 1.5556;
+    font-weight: 500;
+    letter-spacing: 0em;
+}
+
+.header-6 {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0em;
+}
+
+/* lg-breakpoint */
+@media (min-width: 64rem) {
+    .header-1 {
+        font-size: 3rem;
+        line-height: 1;
+    }
+
+    .header-2 {
+        font-size: 2.25rem;
+        line-height: 1.1111;
+    }
+
+    .header-3 {
+        font-size: 1.875rem;
+        line-height: 1.2;
+    }
+
+    .header-4 {
+        font-size: 1.5rem;
+        line-height: 1.3333;
+    }
+
 }

@@ -11,18 +11,21 @@ import { FromUnixEpochMilisecondsToDayMonthYearPipe } from "../../../shared/pipe
 import { FromUnixEpochMilisecondsToHourMinuteSecondPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-hour-minute-second-pipe";
 import { PText } from '../p-text/p-text';
 import { FromUnixEpochMilisecondsToCustomTimeAgoPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-custom-time-ago-pipe";
+import { BlogPostAssociator } from '../../models/blog-post-associator';
+import { SimplePostAssociator } from '../../services/simple-post-associator/simple-post-associator';
 
 /**
- * Component for a complete post, with title, bodies
+ * Component for a complete post, with title, body, related posts etc...
  */
 @Component({
     selector: 'app-blog-post',
-    imports: [Header, BlogPostCard, Image, FromUnixEpochMilisecondsToDayMonthYearPipe, FromUnixEpochMilisecondsToHourMinuteSecondPipe, FromUnixEpochMilisecondsToCustomTimeAgoPipe],
+    imports: [Header, BlogPostCard, Image, FromUnixEpochMilisecondsToDayMonthYearPipe, FromUnixEpochMilisecondsToHourMinuteSecondPipe, FromUnixEpochMilisecondsToCustomTimeAgoPipe, PText],
     templateUrl: './blog-post.html',
     styleUrl: './blog-post.css'
 })
 export class BlogPost implements OnInit {
 
+    private readonly blogPostAssociator: BlogPostAssociator = inject(SimplePostAssociator);
     private readonly blogPostLoader: BlogPostLoader = inject(BlogPostJsonLoader);
     private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
     private readonly router: Router = inject(Router);
@@ -31,6 +34,7 @@ export class BlogPost implements OnInit {
 
     displayLoadingPage: boolean = false;
     blogPost: BlogPostObject = {} as BlogPostObject;
+    relatedPosts: BlogPostObject[] = [];
 
     ngOnInit(): void {
         this.loadBlogPost();
@@ -44,7 +48,10 @@ export class BlogPost implements OnInit {
         const postId: string | null = this.activatedRoute.snapshot.paramMap.get(this.POST_ID_URL_PARAM_NAME);
 
         this.blogPostLoader.getBlogPostById(Number(postId)).subscribe({
-            next: (post) => this.blogPost = post,
+            next: (post) => {
+                this.blogPost = post;
+                this.loadRelatedBlogPosts(post);
+            },
             error: (err) => this.redirectToNotFoundPage()
         });
     }
@@ -53,5 +60,8 @@ export class BlogPost implements OnInit {
         this.router.navigateByUrl("blog");
     }
 
+    loadRelatedBlogPosts(post: BlogPostObject): void {
+        this.blogPostAssociator.loadRelatedPostsTo(post);
+    }
 
 }
