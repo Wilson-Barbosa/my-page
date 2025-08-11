@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { removeHtmlTagsFromString } from '../utils/strings';
 
 @Pipe({
     name: 'fromBlogTextHtmlToText'
@@ -22,7 +23,7 @@ export class FromBlogTextHtmlToTextPipe implements PipeTransform {
      */
     transform(body: string, stringSize?: number): string {
         const size: number = stringSize ? stringSize : 97
-        return body.replace(/<[^>]*>/g, '').slice(0, size).concat("...");
+        return removeHtmlTagsFromString(body).slice(0, size).concat("...");
     }
 
 }

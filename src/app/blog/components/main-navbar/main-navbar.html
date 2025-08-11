@@ -5,7 +5,7 @@
         <p class="text-(--secondary-darker) font-semibold">Blog</p>
     </div>
 
-    <ul class="hidden md:flex gap-8">
+    <ul class="hidden md:flex gap-8 text-sm">
         <li><a routerLinkActive="active-navbar-item" routerLink="home">Home</a></li>
         <li><a routerLinkActive="active-navbar-item" routerLink="posts">Posts</a></li>
         <li><a routerLinkActive="active-navbar-item" routerLink="updates">Updates</a></li>
@@ -13,19 +13,23 @@
     </ul>
 
     <!-- put the language option here later -->
+    @switch (activeTheme) {
+    @case (themeEnum.DARK) {
+    <span class="hidden md:block cursor-pointer text-(--secondary) text-sm"
+        (click)="changeAppThemeTo(themeEnum.LIGHT)">
+        Dark<i class="bi bi-moon-stars-fill ml-2"></i>
+    </span> }
+    @case (themeEnum.LIGHT) {
+    <span class="hidden md:block cursor-pointer text-(--secondary) text-sm"
+        (click)="changeAppThemeTo(themeEnum.DARK)">
+        Light<i class="bi bi-sun-fill ml-2"></i>
+    </span>
+    }
+    @default {
 
-    <div class="hidden md:block cursor-pointer text-(--secondary) text-sm">
-        @switch (activeTheme) {
-        @case (themeEnum.DARK) {
-        <span (click)="changeAppThemeTo(themeEnum.LIGHT)">Dark<i class="bi bi-moon-stars-fill ml-2"></i></span> }
-        @case (themeEnum.LIGHT) {
-        <span (click)="changeAppThemeTo(themeEnum.DARK)">Light<i class="bi bi-sun-fill ml-2"></i></span>
-        }
-        @default {
+    }
+    }
 
-        }
-        }
-    </div>
 
     <!-- collapse menu icon -->
     <i class="md:hidden bi bi-list text-white py-1 px-2 transition-all duration-300"
@@ -35,7 +39,7 @@
 </nav>
 
 <!-- mobile nav bar -->
-<ul class="flex flex-col items-center md:hidden bg-(--primary) text-white w-full absolute top-10 sm:top-12 left-0 transition-all duration-300"
+<ul class="text-sm flex flex-col items-center md:hidden bg-(--primary) text-white w-full absolute top-10 sm:top-12 left-0 transition-all duration-300 z-2"
     [ngClass]="{
         'max-h-0 opacity-0 pointer-events-none': !isNavbarCollapsed,
         'max-h-96 opacity-100 pointer-events-auto': isNavbarCollapsed

@@ -1,3 +1,5 @@
+import { SelectInputDataSource } from "../../shared/components/select-filter-input/select-models";
+
 /** A simple blog post */
 export interface BlogPostObject {
 
@@ -53,4 +55,35 @@ export interface PostMainImage {
     /** The url for the image */
     src: string;
     caption: string;
+}
+
+/**
+ * Implementation of a BlogPostObject that can be used by the SelectFilterComponent
+ */
+export class BlogPostSelectInputImpl implements BlogPostObject, SelectInputDataSource {
+    id: number;
+    title: string;
+    body: string;
+    createdTimestampMiliseconds: number;
+    lastUpdatedTimestampMiliseconds: number;
+    mainImage?: PostMainImage;
+    tags: PostTag[];
+
+    constructor(post: BlogPostObject) {
+        this.id = post.id;
+        this.title = post.title;
+        this.body = post.body;
+        this.createdTimestampMiliseconds = post.createdTimestampMiliseconds;
+        this.lastUpdatedTimestampMiliseconds = post.lastUpdatedTimestampMiliseconds;
+        this.mainImage = post.mainImage;
+        this.tags = post.tags;
+    }
+
+    getValue(): string {
+        return this.id.toString();
+    }
+    getLabel(): string {
+        return this.title;
+    }
+
 }

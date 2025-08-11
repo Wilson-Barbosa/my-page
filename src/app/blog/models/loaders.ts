@@ -23,6 +23,15 @@ export interface BlogPostLoader {
      * Returns an observable with a list of blog posts
      */
     getListOfPostsAsObservable(): Observable<BlogPostObject[]>;
+
+    /**
+     * Returns an observable with a list of blog posts that contain in their bodies the
+     * passed parameter. It only checks the first match and it doesn't care if there is
+     * more than one matching section.
+     *
+     * @param searchString is the string you want to match
+     */
+    getListOfPostsWithBodyContaining(searchString: string): Observable<BlogPostObject[]>;
 }
 
 /**

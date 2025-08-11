@@ -59,7 +59,7 @@ export class BlogPostJsonLoader implements BlogPostLoader {
         return this.httpClient.get<BlogPostObject[]>(this.BLOG_POST_JSON_NAME).pipe(
             map(posts => {
                 if (posts.length === 0) {
-                    throw new Error("Array is empty");
+                    throw new Error(`No post was created`);
                 }
 
                 return posts.reduce((previous, current) => {
@@ -71,6 +71,12 @@ export class BlogPostJsonLoader implements BlogPostLoader {
 
     getListOfPostsAsObservable(): Observable<BlogPostObject[]> {
         return this.httpClient.get<BlogPostObject[]>(this.BLOG_POST_JSON_NAME);
+    }
+
+    getListOfPostsWithBodyContaining(searchString: string): Observable<BlogPostObject[]> {
+        return this.httpClient.get<BlogPostObject[]>(this.BLOG_POST_JSON_NAME).pipe(
+            map(posts => posts.filter(post => post.body.match(searchString)))
+        );
     }
 
 }
