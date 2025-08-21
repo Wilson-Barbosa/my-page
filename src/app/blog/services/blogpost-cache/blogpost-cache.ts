@@ -3,6 +3,7 @@ import { BlogPostObject } from '../../models/post-models';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
 /**
+ * @deprecated
  * Service that caches a list of blogposts recovered from the `angular server`.
  *
  * Because the amount of posts is small I'm grabbing a .json file with all of them
@@ -26,18 +27,18 @@ export class BlogpostCache {
      * I choose this option though because it was simpler than having to check for null or
      * undefinied on everysingle method, specially to wrap the list in an observable.
      */
-    private postList$ = new BehaviorSubject<BlogPostObject[] | null>(null);
+    private cachedPosts$!: Observable<BlogPostObject[]>;
 
     constructor() {
 
     }
 
     setPostListCache(postList: BlogPostObject[]): void {
-        this.postList$.next(postList);
+        this.cachedPosts$ = of(postList);
     }
 
-    getPostListObservable(): BehaviorSubject<BlogPostObject[] | null> {
-        return this.postList$;
+    getPostListObservable(): Observable<BlogPostObject[]> {
+        return this.cachedPosts$;
     }
 
 }

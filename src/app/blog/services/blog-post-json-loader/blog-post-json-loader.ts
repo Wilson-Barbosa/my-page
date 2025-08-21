@@ -1,9 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 
-import { filter, find, map, max, Observable, of, throwError } from 'rxjs';
+import { filter, find, map, max, Observable, of, shareReplay, throwError } from 'rxjs';
 import { BlogPostObject } from '../../models/post-models';
 import { HttpClient } from '@angular/common/http';
-import { BlogpostCache } from '../blogpost-cache/blogpost-cache';
 import { BlogPostLoader } from '../../models/loaders';
 
 /**
@@ -22,27 +21,24 @@ import { BlogPostLoader } from '../../models/loaders';
 export class BlogPostJsonLoader implements BlogPostLoader {
 
     private readonly httpClient: HttpClient = inject(HttpClient);
-    private readonly blogPostCache: BlogpostCache = inject(BlogpostCache);
 
     private readonly BLOG_POST_JSON_NAME: string = "/json/blogpost-list-english.json";
+    private cachedPosts$!: Observable<BlogPostObject[]>;
 
     constructor() {
-
+        this.initializeCache();
     }
 
-    initializeCache(): void {
-        this.blogPostCache.getPostListObservable().subscribe((posts) => {
-            if (posts === null) {
-                this.httpClient.get<BlogPostObject[]>(this.BLOG_POST_JSON_NAME).subscribe({
-                    next: (posts) => this.blogPostCache.setPostListCache(posts),
-                    error: (err) => console.log(err)
-                })
-            }
-        });
+    private initializeCache(): void {
+        this.cachedPosts$ = this.httpClient.get<BlogPostObject[]>(this.BLOG_POST_JSON_NAME).pipe(
+            // I'm using a shareReplay here so all subscribers share the same value, which
+            // will prevent racing conditions for multiple calls
+            shareReplay(1)
+        );
     }
 
     getBlogPostById(postId: number): Observable<BlogPostObject> {
-        return this.httpClient.get<BlogPostObject[]>(this.BLOG_POST_JSON_NAME).pipe(
+        return this.cachedPosts$.pipe(
             map((posts) => {
                 const post: BlogPostObject | undefined = posts.find(post => post.id === postId);
 
@@ -56,7 +52,7 @@ export class BlogPostJsonLoader implements BlogPostLoader {
     }
 
     getLatestPost(): Observable<BlogPostObject> {
-        return this.httpClient.get<BlogPostObject[]>(this.BLOG_POST_JSON_NAME).pipe(
+        return this.cachedPosts$.pipe(
             map(posts => {
                 if (posts.length === 0) {
                     throw new Error(`No post was created`);
@@ -70,11 +66,11 @@ export class BlogPostJsonLoader implements BlogPostLoader {
     }
 
     getListOfPostsAsObservable(): Observable<BlogPostObject[]> {
-        return this.httpClient.get<BlogPostObject[]>(this.BLOG_POST_JSON_NAME);
+        return this.cachedPosts$;
     }
 
     getListOfPostsWithBodyContaining(searchString: string): Observable<BlogPostObject[]> {
-        return this.httpClient.get<BlogPostObject[]>(this.BLOG_POST_JSON_NAME).pipe(
+        return this.cachedPosts$.pipe(
             map(posts => posts.filter(post => post.body.match(searchString)))
         );
     }
