@@ -5,23 +5,31 @@
         <p class="text-(--secondary-darker) font-semibold">Blog</p>
     </div>
 
-    <ul class="hidden md:flex gap-8 text-sm">
+    <ul class="hidden md:flex gap-8 text-sm items-center">
         <li><a routerLinkActive="active-navbar-item" routerLink="home">Home</a></li>
-        <li><a routerLinkActive="active-navbar-item" routerLink="posts">Posts</a></li>
-        <li><a routerLinkActive="active-navbar-item" routerLink="updates">Updates</a></li>
+        <!-- <li><a routerLinkActive="active-navbar-item" routerLink="posts">Posts</a></li> -->
         <li><a routerLinkActive="active-navbar-item" routerLink="/portfolio">Portfolio</a></li>
+        <li [ngClass]="{'ring-2 ring-(--secondary-font-color)': showFocusEffect}" class="bg-black rounded px-4 py-2">
+            <input
+                type="text"
+                class="placeholder-(--secondary-font-color) w-65 text-(--primary-font-color) outline-none focus:ring-0 placeholder:italic"
+                placeholder="search in posts"
+                [(ngModel)]="searchKeywordInput"
+                (focus)="handleOnInputFocus()"
+                (blur)="handleOnInputBlur()"
+                (keydown.enter)="redirectSearch()">
+            <i class="bi bi-search"></i>
+        </li>
     </ul>
 
     <!-- put the language option here later -->
     @switch (activeTheme) {
     @case (themeEnum.DARK) {
-    <span class="hidden md:block cursor-pointer text-(--secondary) text-sm"
-        (click)="changeAppThemeTo(themeEnum.LIGHT)">
+    <span class="hidden md:block cursor-pointer text-(--secondary) text-sm" (click)="changeAppThemeTo(themeEnum.LIGHT)">
         Dark<i class="bi bi-moon-stars-fill ml-2"></i>
     </span> }
     @case (themeEnum.LIGHT) {
-    <span class="hidden md:block cursor-pointer text-(--secondary) text-sm"
-        (click)="changeAppThemeTo(themeEnum.DARK)">
+    <span class="hidden md:block cursor-pointer text-(--secondary) text-sm" (click)="changeAppThemeTo(themeEnum.DARK)">
         Light<i class="bi bi-sun-fill ml-2"></i>
     </span>
     }
@@ -50,9 +58,9 @@
     <li class="p-3">
         <a routerLinkActive="active-navbar-item" routerLink="posts" (click)="toggleNavBarCollapsed()">Posts</a>
     </li>
-    <li class="p-3">
+    <!-- <li class="p-3">
         <a routerLinkActive="active-navbar-item" routerLink="updates" (click)="toggleNavBarCollapsed()">Updates</a>
-    </li>
+    </li> -->
     <li class="p-3">
         <a routerLinkActive="active-navbar-item" routerLink="/portfolio" (click)="toggleNavBarCollapsed()">Portfolio</a>
     </li>

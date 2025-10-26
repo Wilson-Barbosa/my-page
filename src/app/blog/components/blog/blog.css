@@ -1,0 +1,14 @@
+.content {
+    background-color: #0e304b;
+
+    /* Create a diagonal split from bottom-left to top-right */
+    background-image: linear-gradient(
+            /* Angle: 135deg goes from bottom-left (0%) to top-right (100%) */
+            35deg,
+
+            /* First color stop: Start transparent */
+            transparent 50%,
+
+            /* Second color stop: Hard stop at 50% to switch to the main color */
+            var(--primary-darker) 50%);
+}

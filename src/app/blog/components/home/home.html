@@ -1,26 +1,27 @@
-<div class="grid grid-cols-5 gap-4 mt-7 mb-17 md:gap-6 xl:gap-10 sm:mx-3 lg:mx-6 xl:mx-20">
+<div class="grid grid-cols-5 gap-4 mt-7 mb-17 md:gap-6 xl:gap-10 sm:mx-3 lg:mx-6 xl:mx-20 text-white">
 
     <!-- Personal information about me and the blog -->
-    <section class="col-span-5 md:col-span-2">
-        <div>
-            <app-header [size]="4" label="About me" class="text-(--primary-font-color)"></app-header>
+    <section class="col-span-5 md:col-span-2 static">
 
-            <app-p-text class="text-(--primary-font-color)">
+        <div>
+            <app-header [size]="4" label="About me" class="text-(--secondary-darker)"></app-header>
+
+            <app-p-text>
                 Welcome! I'm Wilson and I'm just another person wandering around!
             </app-p-text>
 
         </div>
         <div class="mt-6 text-justify">
-            <app-header [size]="4" label="This blog" class="text-(--primary-font-color)"></app-header>
+            <app-header [size]="4" label="This blog" class="text-(--secondary-darker)"></app-header>
 
-            <app-p-text class="text-(--primary-font-color)">
+            <app-p-text>
                 Personal expression is a deeply human need, my expression here is done with words. I enjoy writing very
                 much and although I don't like
                 social media and have little to no presence in it, I still would like to create something that
                 other people might see one day.
             </app-p-text>
 
-            <app-p-text class="text-(--primary-font-color)">
+            <app-p-text>
                 I hope these words find you well! God bless :)
             </app-p-text>
 
@@ -32,17 +33,17 @@
     <!-- Recent posts section -->
     <section class="col-span-5 md:col-span-3">
 
-        <app-header [size]="4" label="Latest post" class="text-(--primary-font-color)"></app-header>
+        <app-header [size]="4" label="Latest post" class="text-(--secondary-darker)"></app-header>
         <br>
         @if (latestBlogPost) {
         <app-card>
             <div class="m-6">
-                <app-header [size]="3" [label]="latestBlogPost.title" class="text-(--primary-font-color)"></app-header>
+                <app-header [size]="3" [label]="latestBlogPost.title"></app-header>
                 @if(latestBlogPost.mainImage) {
                 <img class="my-6" [src]="latestBlogPost.mainImage.src" alt="">
                 }
 
-                <app-p-text class="text-(--primary-font-color)">
+                <app-p-text>
                     {{ latestBlogPost.body | fromBlogTextHtmlToText:300 }}
                 </app-p-text>
 
@@ -55,18 +56,17 @@
         </app-card>
         }
         @else {
-        <app-p-text class="text-(--primary-font-color)">No post available</app-p-text>
+        <app-p-text>No post available</app-p-text>
         }
 
     </section>
 
-    <hr class="border-(--secondary-font-color) col-span-5 my-4">
 
     <!-- section with the latests posts -->
     <section class="col-span-5">
 
         <div class="flex justify-between">
-            <app-header [size]="4" label="Other posts" class="text-(--primary-font-color)"></app-header>
+            <app-header [size]="4" label="Other posts" class="text-(--secondary-darker)"></app-header>
             <!-- <span>Order by: </span> -->
         </div>
 
@@ -80,7 +80,12 @@
         </div>
         }
         @else {
-        <app-p-text class="text-(--primary-font-color)">No post available</app-p-text>
+        <app-p-text>No post available</app-p-text>
         }
+    </section>
+
+    <!-- Section about updates -->
+    <section>
+
     </section>
 </div>

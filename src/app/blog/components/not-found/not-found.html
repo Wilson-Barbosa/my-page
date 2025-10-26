@@ -1,17 +1,20 @@
-<div class="border-4 text-center py-6 bg-(--primary-background-color)">
+<div class="flex items-center justify-center h-screen">
+  <div class="flex flex-col gap-5 text-center py-6">
 
-    <app-header [size]="3" label="Page not foud" class=""></app-header>
+    <app-header [size]="2" label="Page not found"></app-header>
 
     @if (redirectedLink) {
-    <div class="my-8">
+      <div class="my-10">
         <p>Ops, it appears this page:</p>
         <p class="underline">{{redirectedLink}}</p>
         <p><b>does not exist</b></p>
-    </div>
+      </div>
     } @else {
-        <p>Ops, it appears this page does not exist</p>
+      <p>Ops, it appears this page does not exist!</p>
     }
 
-    <p class="text-(--primary-font-color)">Go to <a routerLink="/blog" class="underline">home</a></p>
+    <p>Go to <a routerLink="/portfolio" class="underline">my portfolio</a> or <a routerLink="/blog" class="underline">my blog</a></p>
 
+  </div>
 </div>
+

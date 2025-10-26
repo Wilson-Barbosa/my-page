@@ -23,7 +23,7 @@ export const routes: Routes = [
         children: [
             { path: "", redirectTo: "home", pathMatch: "full" },
             { path: "home", component: Home, title: "Home | Blog" },
-            { path: "updates", component: Updates, title: "Updates | Blog" },
+            // { path: "updates", component: Updates, title: "Updates | Blog" },
             { path: "posts", component: Posts, title: "Updates | Blog" },
             { path: "posts/:postId", component: BlogPost, title: "Post | Blog", canActivate: [IntegerParameterGuard] },
             environment.enableCreatePostRoute ? { path: "post-creator", component: BlogPostCreator } : {}
@@ -31,5 +31,5 @@ export const routes: Routes = [
     },
 
     { path: "page-not-found", component: NotFound, title: "Page not found" },
-    { path: "**", redirectTo: "not-found" }
+    { path: "**", redirectTo: "page-not-found" }
 ];
