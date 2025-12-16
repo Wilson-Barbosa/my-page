@@ -50,10 +50,12 @@ html {
 }
 
 /* -------------------------- responsive styling for paragraphs (from tailwind) -------------------------- */
-/* -- These classes can (and should) be used by components that are displayed inside [innethtml] bidings -- */
+/* -- These classes can (and should) be used by components that are displayed inside [innerHtml] bidings -- */
 .p-text {
     margin-top: 1rem;
     font-size: 0.875rem;
+    letter-spacing: 1px;
+    line-height: 30px;
 }
 
 /* sm-breakpoint */

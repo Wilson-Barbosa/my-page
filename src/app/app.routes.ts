@@ -24,8 +24,10 @@ export const routes: Routes = [
             { path: "", redirectTo: "home", pathMatch: "full" },
             { path: "home", component: Home, title: "Home | Blog" },
             // { path: "updates", component: Updates, title: "Updates | Blog" },
-            { path: "posts", component: Posts, title: "Updates | Blog" },
+            { path: "posts", component: Posts, title: "Posts | Blog" },
             { path: "posts/:postId", component: BlogPost, title: "Post | Blog", canActivate: [IntegerParameterGuard] },
+
+            // TODO is there a better pattern for this?
             environment.enableCreatePostRoute ? { path: "post-creator", component: BlogPostCreator } : {}
         ]
     },
