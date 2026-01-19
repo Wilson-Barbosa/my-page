@@ -2,6 +2,22 @@
 @import "tailwindcss";
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter/inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter/inter-italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
     --primary: #254660;
     --primary-darker: #0d2d46;
@@ -20,6 +36,7 @@
 
 html {
     scroll-behavior: smooth;
+    font-family: Inter, system-ui, sans-serif;
 }
 
 /* -------------------------- used to apply styling to elements that are active inside a navbar -------------------------- */
@@ -29,8 +46,8 @@ html {
 
 /* -------------------------- I got this from https://cssloaders.github.io/ -------------------------- */
 .loader-spinner {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border: 5px solid #0d2d46;
     border-bottom-color: #dda027;
     border-radius: 50%;
@@ -53,8 +70,8 @@ html {
 /* -- These classes can (and should) be used by components that are displayed inside [innerHtml] bidings -- */
 .p-text {
     margin-top: 1rem;
-    font-size: 0.875rem;
-    letter-spacing: 1px;
+    /* font-size: 0.875rem;
+    letter-spacing: 1px; */
     line-height: 30px;
 }
 
