@@ -13,6 +13,7 @@ import { PText } from '../p-text/p-text';
 import { FromUnixEpochMilisecondsToCustomTimeAgoPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-custom-time-ago-pipe";
 import { BlogPostAssociator } from '../../models/blog-post-associator';
 import { SimplePostAssociator } from '../../services/simple-post-associator/simple-post-associator';
+import { Title } from '@angular/platform-browser';
 
 /**
  * Component for a complete post, with title, body, related posts etc...
@@ -29,6 +30,7 @@ export class BlogPost implements OnInit {
     private readonly blogPostLoader: BlogPostLoader = inject(BlogPostJsonLoader);
     private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
     private readonly router: Router = inject(Router);
+    private readonly titleService: Title = inject(Title);
 
     private readonly POST_ID_URL_PARAM_NAME: string = "postId";
 
@@ -51,6 +53,7 @@ export class BlogPost implements OnInit {
             next: (post) => {
                 this.blogPost = post;
                 this.loadRelatedBlogPosts(post);
+                this.pushPostTitleToPageTitle();
             },
             error: (err) => this.redirectToNotFoundPage()
         });
@@ -64,4 +67,7 @@ export class BlogPost implements OnInit {
         this.blogPostAssociator.loadRelatedPostsTo(post);
     }
 
+    pushPostTitleToPageTitle(): void {
+        this.titleService.setTitle(this.blogPost.title + " | " + this.titleService.getTitle());
+    }
 }
