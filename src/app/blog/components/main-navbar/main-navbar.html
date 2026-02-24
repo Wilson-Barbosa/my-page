@@ -5,10 +5,11 @@
         <p class="text-(--secondary-darker) font-semibold">Blog</p>
     </div>
 
-    <ul class="hidden md:flex gap-8 text-sm items-center">
-        <li><a routerLinkActive="active-navbar-item" routerLink="home">Home</a></li>
-        <li><a routerLinkActive="active-navbar-item" routerLink="/portfolio">Portfolio</a></li>
-        <li [ngClass]="{'ring-2 ring-(--secondary-font-color)': showFocusEffect}" class="bg-black rounded px-4 py-2">
+    <ul class="hidden md:flex gap-4 text-sm items-center">
+        <li><a routerLinkActive="active-navbar-item" routerLink="home" class="hover:border-b-(--secondary-darker) hover:border-b-2 py-2 px-3">Home</a></li>
+        <li><a routerLinkActive="active-navbar-item" routerLink="/blog/posts" class="hover:border-b-(--secondary-darker) hover:border-b-2 py-2 px-3">Posts</a></li>
+        <li><a routerLinkActive="active-navbar-item" routerLink="/portfolio" class="hover:border-b-(--secondary-darker) hover:border-b-2 py-2 px-3">Portfolio</a></li>
+        <li [ngClass]="{'ring-2 ring-(--secondary-font-color)': showFocusEffect}" class="bg-(--secondary-background-color) rounded px-4 py-2">
             <input
                 type="text"
                 class="placeholder-(--secondary-font-color) w-65 text-(--primary-font-color) outline-none focus:ring-0 placeholder:italic"

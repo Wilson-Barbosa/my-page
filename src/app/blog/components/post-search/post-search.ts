@@ -13,16 +13,16 @@ import { NgClass } from '@angular/common';
 @Component({
     selector: 'app-posts',
     imports: [Header, ReactiveFormsModule, Card, FromHtmlToHighlightedStringPipe, PText, NgClass, RouterLink],
-    templateUrl: './posts.html',
-    styleUrl: './posts.css'
+    templateUrl: './post-search.html',
+    styleUrl: './post-search.css'
 })
-export class Posts implements OnInit {
+export class PostSearch implements OnInit {
 
     private readonly blogPostLoader: BlogPostLoader = inject(BlogPostJsonLoader);
     private readonly router: Router = inject(Router);
     private readonly activatedSnapshot: ActivatedRoute = inject(ActivatedRoute);
 
-    private readonly SEARCH_KEY: string = "search";
+    private readonly SEARCH_KEY: string = "body";
 
     searchFormGroup: FormGroup = new FormGroup({
         postInputForm: new FormControl('', [Validators.minLength(3), Validators.required])
@@ -33,6 +33,8 @@ export class Posts implements OnInit {
     showFocusEffect: boolean = false;
     highlightedSection: string = "";
     searchWasCalled: boolean = false;
+    isSearchExecuting: boolean = false;
+
 
     ngOnInit(): void {
         const queryParameter: string | null = this.activatedSnapshot.snapshot.queryParamMap.get(this.SEARCH_KEY);
@@ -57,8 +59,10 @@ export class Posts implements OnInit {
 
             const searchBy = this.searchFormGroup.get('postInputForm')?.value.trim();
 
+            this.isSearchExecuting = true;
+
             this.router.navigate([], {
-                queryParams: { search: searchBy },
+                queryParams: { body: searchBy },
             })
 
             this.blogPostLoader.getListOfPostsWithBodyContaining(searchBy).subscribe({
@@ -66,10 +70,12 @@ export class Posts implements OnInit {
                     this.blogPostList = posts;
                     this.displaySearchResults = true;
                     this.highlightedSection = searchBy;
+                    this.isSearchExecuting = false;
                 },
                 error: (err) => {
                     console.log(err);
                     this.displaySearchResults = true;
+                    this.isSearchExecuting = false;
                 }
             });
         }

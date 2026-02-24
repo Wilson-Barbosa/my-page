@@ -1,7 +1,7 @@
-<div class="md:mx-15 lg:mx-30">
-    <app-header [size]="3" label="Search for a post" class="text-(--primary-font-color)"></app-header>
+<div >
+    <app-header [size]="3" label="Search for a post" class="text-(--secondary-darker)"></app-header>
 
-    <form [formGroup]="searchFormGroup" class="my-6 sm:flex items-center gap-3" (ngSubmit)="handleOnButtonClick(); $event.preventDefault()">
+    <form [formGroup]="searchFormGroup" class="my-6 sm:flex items-center gap-4" (ngSubmit)="handleOnButtonClick(); $event.preventDefault()">
         <div
             class="bg-(--secondary-background-color) rounded flex items-center relative"
             [ngClass]="{'ring-2 ring-(--secondary-font-color)': showFocusEffect}">
@@ -10,20 +10,29 @@
             <input
                 type="text"
                 formControlName="postInputForm"
-                class="placeholder-(--secondary-font-color) w-80 text-(--primary-font-color) outline-none focus:ring-0 placeholder:italic py-1.5 pr-3 rounded"
-                placeholder="search in posts"
+                class="placeholder-(--secondary-font-color) w-full sm:w-100 text-(--primary-font-color) outline-none focus:ring-0 placeholder:italic py-1.5 pr-3 rounded"
+                placeholder=""
                 (focus)="handleOnInputFocus()"
                 (blur)="handleOnInputBlur()">
 
             @if(searchFormGroup.invalid && searchWasCalled){
-                <p class="text-red-600 text-xs md:text-sm absolute top-22 sm:top-10">Minimum of 3 characters</p>
+                <p class="text-red-500 text-xs md:text-sm absolute top-22 sm:top-10">Minimum of 3 characters</p>
             }
         </div>
 
 
-        <button type="submit"
-            class="flex-none bg-(--primary-darker) text-white rounded h-full py-1.5 px-2.5 w-full sm:size-fit mt-2 sm:mt-0 hover:cursor-pointer"
-            >Search</button>
+        @if (isSearchExecuting) {
+            <div class="loader-spinner"></div>
+        }
+
+        @if (!isSearchExecuting) {
+            <button
+                type="submit"
+                class="flex-none bg-(--secondary-darker) text-(--primary-darker) rounded h-full py-1.5 px-2.5 w-full sm:size-fit mt-2 sm:mt-0 hover:cursor-pointer"
+                >Search
+            </button>
+        }
+
     </form>
 
 
@@ -31,7 +40,7 @@
 
 
 @if(displaySearchResults) {
-<div class="md:mx-15 lg:mx-30 mt-9 md:mt-15">
+<div class="mt-15">
 
     <app-header [size]="5" label="Results: " class="text-(--primary-font-color)"></app-header>
 
@@ -45,7 +54,7 @@
     }
 
     @for (post of blogPostList; track $index) {
-        <a [routerLink]="[post.id]">
+        <a [routerLink]="['/', 'blog', 'posts', post.id]">
             <app-card extraClasses="p-3 sm:p-6 text-(--primary-font-color) my-6">
                 <p class="header-5">{{post.title}}</p>
                 <p class="p-text" [innerHTML]="post.body | fromHtmlToHighlightedString:highlightedSection "></p>

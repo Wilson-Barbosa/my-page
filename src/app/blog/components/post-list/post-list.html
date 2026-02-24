@@ -1,0 +1,85 @@
+<!-- Header for the page -->
+<div class="mb-3 text-(--primary-font-color) flex items-center justify-between">
+    <app-header [size]="3" label="All posts" class="text-(--secondary-darker)"></app-header>
+
+    <div class="lg:hidden relative">
+        <ng-content *ngTemplateOutlet="filterHeader"></ng-content>
+
+        @if(displayDropdown) {
+        <div class="absolute rounded right-0 p-3 border-1 border-(--primary-font-color) bg-(--primary-darker) mt-1">
+            <ng-content *ngTemplateOutlet="filterOptions"></ng-content>
+        </div>
+        }
+
+    </div>
+
+</div>
+
+<!-- Main content of the page goes here -->
+@if(!displayLoading) {
+<section class="flex gap-2 items-center">
+    <div class="loader-spinner"></div>
+    <span class="text-(--primary-font-color)">Loading</span>
+</section>
+} @else {
+<div class="text-(--primary-font-color)">
+
+    <app-p-text class="text-(--primary-font-color)">Displaying {{postList.length}} of {{postList.length}} results</app-p-text>
+
+
+    <div class="flex gap-10 justify-center mt-8">
+        <!-- post listing -->
+        <div class="flex flex-col gap-8">
+            @for (post of postList; track $index) {
+            <app-blog-post-card [blogPost]="post"></app-blog-post-card>
+            }
+        </div>
+
+        <div class="hidden lg:block w-px bg-amber-50"></div>
+
+        <!-- filtering options -->
+        <div class="hidden lg:block w-80">
+            <ng-content *ngTemplateOutlet="filterHeader"></ng-content>
+            <ng-content *ngTemplateOutlet="filterOptions"></ng-content>
+        </div>
+
+    </div>
+
+</div>
+
+}
+
+<!-- Filter header separated to make responsible design easier -->
+<ng-template #filterHeader>
+    <div class="text-(--secondary-darker) font-bold" (click)="toggleDisplayDropdown()">
+        <i class="bi bi-filter"></i>
+        <span class="ml-1">Sort by</span>
+
+        <span class="lg:hidden" [ngClass]="{'-rotate-90': !displayDropdown}">
+            <i class="bi bi-caret-down-fill ml-2"></i>
+        </span>
+    </div>
+</ng-template>
+
+<!-- Container header separated to make responsive design easier -->
+<ng-template #filterOptions>
+
+    <section class="text-(--primary-font-color)">
+
+        <hr class="my-2 hidden">
+
+        <!-- sorting options -->
+        <div class="flex flex-col gap-1 lg:mt-5 lg:ms-2">
+            <div class="flex gap-2 items-center">
+                <input name="radioDate" type="radio" id="oldest">
+                <label for="oldest">oldest</label>
+            </div>
+
+            <div class="flex gap-2 items-center">
+                <input name="radioDate" type="radio" id="newest">
+                <label for="newest">newest</label>
+            </div>
+        </div>
+    </section>
+
+</ng-template>

@@ -53,7 +53,7 @@ export class MainNavbar implements OnInit, OnDestroy {
 
     redirectSearch(): void {
         if(this.searchKeywordInput !== "") {
-            this.router.navigateByUrl("blog/posts?search=" + this.searchKeywordInput);
+            this.router.navigateByUrl("blog/posts/search?body=" + this.searchKeywordInput);
             this.searchKeywordInput = "";
         }
     }
