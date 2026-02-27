@@ -6,8 +6,8 @@ import { NotFound } from './blog/components/not-found/not-found';
 import { Updates } from './blog/components/updates/updates';
 import { PostSearch } from './blog/components/post-search/post-search';
 import { BlogPostCreator } from './blog/components/blog-post-creator/blog-post-creator';
-import { environment } from '../environments/environment';
 import { PostList } from './blog/components/post-list/post-list';
+import { PostCreatorGuard } from './blog/guards/post-creator-guard';
 
 export const routes: Routes = [
 
@@ -28,9 +28,12 @@ export const routes: Routes = [
             { path: "posts/search", component: PostSearch, title: "Search | Blog" },
             { path: "posts/:postId", component: BlogPost, title: "Post | Blog", canActivate: [IntegerParameterGuard] },
 
-
-            // TODO is there a better pattern for this?
-            environment.enableCreatePostRoute ? { path: "post-creator", component: BlogPostCreator } : {}
+            {
+                path: "post-creator",
+                loadComponent: () => import('./blog/components/blog-post-creator/blog-post-creator')
+                .then(c => c.BlogPostCreator),
+                canMatch: [PostCreatorGuard]
+            }
         ]
     },
 
