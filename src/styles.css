@@ -39,6 +39,12 @@ html {
     font-family: Inter, system-ui, sans-serif;
 }
 
+.rotate-180-manual {
+  display: inline-block;   /* ensures transform applies properly */
+  transform: rotate(180deg);
+}
+
+
 /* -------------------------- used to apply styling to elements that are active inside a navbar -------------------------- */
 .active-navbar-item {
     color: var(--secondary-darker);
@@ -69,9 +75,9 @@ html {
 /* -------------------------- responsive styling for paragraphs (from tailwind) -------------------------- */
 /* -- These classes can (and should) be used by components that are displayed inside [innerHtml] bidings -- */
 .p-text {
-    margin-top: 1rem;
-    /* font-size: 0.875rem;
-    letter-spacing: 1px; */
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    /* letter-spacing: 1px; */
     line-height: 30px;
 }
 

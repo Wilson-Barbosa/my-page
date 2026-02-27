@@ -21,6 +21,11 @@ export class BreadcrumbService {
             next: (navigationEndEvent: NavigationEnd) => {
                 // once the NavigationEnd is emitted I can safely grab and parse the url
                 console.log(navigationEndEvent.url)
+
+                let items: string[] = navigationEndEvent.url.split("/")
+                items.forEach(e => {
+                    this.breadcrumbList$.next(availableItems)
+                });
             },
             error: (err) => console.log(err)
         })
@@ -38,7 +43,5 @@ export interface BreadcrumbItem {
 
 const availableItems: BreadcrumbItem[] = [
     { routePath: "home", bootstrapIconClass: "bi bi-house-door-fill", message: "Home" },
-    { routePath: "updates", bootstrapIconClass: "bi bi-stars", message: "Updates" },
     { routePath: "posts", bootstrapIconClass: "bi bi-postcard", message: "Posts" },
-    { routePath: "posts", bootstrapIconClass: "bi bi-postcard", message: "Posts" }
 ]

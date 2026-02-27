@@ -1,4 +1,4 @@
-<div class="sm:mx-6 md:mx-15 lg:mx-30 mb-15 mt-3">
+<div class="sm:mx-6 md:mx-15 lg:mx-30 mt-3">
     <app-header [label]="blogPost.title" [size]="2" class="text-(--secondary-darker)"></app-header>
 
     <!-- creation and last update section -->
@@ -11,14 +11,16 @@
     </div>
 
     @if(blogPost.mainImage !== undefined) {
-    <app-image [src]="blogPost.mainImage.src" [caption]="blogPost.mainImage.caption"
-        extraTailwindClasses=" my-10"></app-image>
+    <div class="my-12">
+        <app-image [src]="blogPost.mainImage.src" [caption]="blogPost.mainImage.caption"
+            extraTailwindClasses=" my-10"></app-image>
+        </div>
     }
 
     <!-- the container that holds the body of the post -->
     <div class="mt-5 text-(--primary-font-color) text-justify" [innerHTML]="blogPost.body"> </div>
 
-    <hr class="my-4 border-(--secondary-font-color)">
+    <hr class="my-8 border-(--secondary-font-color)">
 
     <p class="text-sm italic text-center md:text-end text-(--secondary-font-color)">
         Last edited:
@@ -29,11 +31,11 @@
 </div>
 
 <!-- put similar posts here later -->
-<div class="sm:mx-6 md:mx-15 -mt-3 mb-10">
+<div class="my-14 md:mx-10">
 
-    <app-header label="Related posts" [size]="4" class="text-(--primary-font-color)"></app-header>
+    <app-header label="Related posts" [size]="4" class="text-(--secondary-darker)"></app-header>
 
-    <div class="mt-5">
+    <div class="mt-8">
 
         @if(relatedPosts.length === 0) {
         <app-p-text class="text-(--secondary-font-color)">

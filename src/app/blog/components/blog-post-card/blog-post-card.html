@@ -2,19 +2,19 @@
     (mouseenter)="handleOnMouseEnterCard()"
     (mouseleave)="handleOnMouseExitCard()"
     >
-    <app-card extraTailwindClasses="bg-(--secondary-background-color)">
+    <app-card extraTailwindClasses="">
 
         <img class="overflow-hidden w-full h-auto" [src]="blogPost.mainImage?.src" alt="">
 
         <div class="m-3">
-            <app-header [label]="blogPost.title" [size]="5" class="text-(--primary-font-color)"></app-header>
+            <app-header [label]="blogPost.title" [size]="5" class="text-(--primary-darker)"></app-header>
 
-            <p class="mt-1 text-sm italic text-(--secondary-font-color)">
+            <p class="mt-1 text-sm italic text-(--primary)">
                 <i class="bi bi-calendar3 mr-1"></i>
                 {{ blogPost.createdTimestampMiliseconds | fromUnixEpochMilisecondsToDayMonthYear }}
             </p>
 
-            <p class="text-sm mt-4 text-(--primary-font-color)"
+            <p class="text-sm mt-4 text-(--primary-darker)"
                [ngClass]="{'underline': displayUnderlineEffectOnElement}">
                 {{ blogPost.body | fromBlogTextHtmlToText: 200 }}
             </p>

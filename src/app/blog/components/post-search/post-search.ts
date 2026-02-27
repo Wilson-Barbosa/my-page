@@ -9,10 +9,12 @@ import { Card } from "../../../shared/components/card/card";
 import { FromHtmlToHighlightedStringPipe } from "../../../shared/pipes/from-html-to-highlighted-string-pipe";
 import { PText } from "../p-text/p-text";
 import { NgClass } from '@angular/common';
+import { FromUnixEpochMilisecondsToCustomTimeAgoPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-custom-time-ago-pipe";
+import { FromUnixEpochMilisecondsToDayMonthYearPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-day-month-year-pipe";
 
 @Component({
     selector: 'app-posts',
-    imports: [Header, ReactiveFormsModule, Card, FromHtmlToHighlightedStringPipe, PText, NgClass, RouterLink],
+    imports: [Header, ReactiveFormsModule, Card, FromHtmlToHighlightedStringPipe, PText, NgClass, RouterLink, FromUnixEpochMilisecondsToCustomTimeAgoPipe, FromUnixEpochMilisecondsToDayMonthYearPipe],
     templateUrl: './post-search.html',
     styleUrl: './post-search.css'
 })

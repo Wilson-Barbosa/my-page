@@ -1,16 +1,16 @@
-<div >
+<div class="">
     <app-header [size]="3" label="Search for a post" class="text-(--secondary-darker)"></app-header>
 
     <form [formGroup]="searchFormGroup" class="my-6 sm:flex items-center gap-4" (ngSubmit)="handleOnButtonClick(); $event.preventDefault()">
         <div
-            class="bg-(--secondary-background-color) rounded flex items-center relative"
+            class="border-2 border-(--primary-lighter) rounded flex items-center relative"
             [ngClass]="{'ring-2 ring-(--secondary-font-color)': showFocusEffect}">
 
             <i class="bi bi-search px-3 text-(--secondary-font-color)"></i>
             <input
                 type="text"
                 formControlName="postInputForm"
-                class="placeholder-(--secondary-font-color) w-full sm:w-100 text-(--primary-font-color) outline-none focus:ring-0 placeholder:italic py-1.5 pr-3 rounded"
+                class="placeholder-(--secondary-font-color) text-(--primary-font-color) outline-none focus:ring-0 placeholder:italic py-1.5 pr-3 rounded"
                 placeholder=""
                 (focus)="handleOnInputFocus()"
                 (blur)="handleOnInputBlur()">
@@ -55,9 +55,18 @@
 
     @for (post of blogPostList; track $index) {
         <a [routerLink]="['/', 'blog', 'posts', post.id]">
-            <app-card extraClasses="p-3 sm:p-6 text-(--primary-font-color) my-6">
+            <app-card extraClasses="p-3 sm:p-6 text-(--primary-darker) my-6">
                 <p class="header-5">{{post.title}}</p>
-                <p class="p-text" [innerHTML]="post.body | fromHtmlToHighlightedString:highlightedSection "></p>
+
+                <div class="text-sm mt-2">
+                    <i class="bi bi-calendar3 mr-1"></i>
+                    <span class="text-sm italic">
+                        {{ post.createdTimestampMiliseconds | fromUnixEpochMilisecondsToDayMonthYear }}
+                        {{ post.createdTimestampMiliseconds | fromUnixEpochMilisecondsToCustomTimeAgo }}
+                    </span>
+                </div>
+
+                <p class="p-text" [innerHTML]="post.body | fromHtmlToHighlightedString:highlightedSection:200 "></p>
             </app-card>
         </a>
     }
