@@ -10,7 +10,7 @@ Repository containing the source code for my Portfolio Page. Built with Angular 
 sudo docker build -t prod-simulation .
 ```
 
-2. Instantiate a new container from it and bind a host machine port with the port by running:
+2. Instantiate a new container from the image and bind a host machine port with the port by running:
 
 ```bash
 sudo docker run --name=production -d -p 4000:80 prod-simulation
@@ -18,7 +18,7 @@ sudo docker run --name=production -d -p 4000:80 prod-simulation
 
 3. Open a browser and go to `localhost:4000/`. If everything worked the files should be served properly.
 
-4. Stop and remove the the container using `-f` flag:
+4. Stop and remove the running container using `-f` flag:
 
 ```bash
 sudo docker rm -f production
