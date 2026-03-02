@@ -1,5 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,21 +9,16 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './main-navbar.html',
     styleUrl: './main-navbar.css'
 })
-export class MainNavbar implements OnInit, OnDestroy {
+export class MainNavbar implements OnInit {
 
     private readonly router: Router = inject(Router);
 
-    activeThemeSubscription!: Subscription;
     activeTheme: string = "";
     isNavbarCollapsed: boolean = false;
     showFocusEffect: boolean = false;
     searchKeywordInput: string = "";
 
     ngOnInit(): void {
-    }
-
-    ngOnDestroy(): void {
-        this.activeThemeSubscription.unsubscribe();
     }
 
 
