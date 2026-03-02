@@ -17,7 +17,7 @@ FROM nginx:1.29.5-alpine-slim AS final_stage
 WORKDIR /app
 
 # copy the server config to the proper nginx folder
-COPY server-test.conf /etc/nginx/conf.d
+COPY server-test.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=build_stage /opt/app/dist/my-page/browser /usr/share/nginx/html/
 
