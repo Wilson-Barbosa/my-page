@@ -1,10 +1,10 @@
 <div class="relative">
 
     <!-- Input container -->
-    <div class="text-sm sm:text-base flex items-center gap-3 w-full text-(--primary-font-color) border-1 border-(--primary-font-color) p-1.5 rounded" [ngClass]="{'bg-(--secondary-background-color)': isInputDisabled}"
+    <div class="text-sm sm:text-base flex items-center gap-3 w-full text-white border-1 border-white p-1.5 rounded" [ngClass]="{'': isInputDisabled}"
         >
         <i class="bi bi-search ml-1"></i>
-        <input type="text" class="w-full mr-1 focus:outline-none focus:ring-0 placeholder-(--secondary-font-color)"
+        <input type="text" class="w-full mr-1 focus:outline-none focus:ring-0 placeholder-white"
         [(ngModel)]="inputForm"
         [placeholder]="placeholder"
         [disabled]="isInputDisabled"
@@ -15,14 +15,14 @@
 
     <!-- list of items -->
     <ul [hidden]="!isListCollapsed"
-        class="text-sm sm:text-base absolute top-9 sm:top-10 w-full border-1 border-(--primary-font-color) bg-(--primary-background-color) text-(--primary-font-color) p-1 rounded shadow-md">
+        class="text-sm sm:text-base absolute top-9 sm:top-10 w-full border-1 border-white text-white p-1 rounded shadow-md">
 
         @if(renderedItems.length === 0 ) {
             <li class="text-sm">No items found</li>
         }
 
         @for (dataSource of renderedItems; track $index) {
-            <li class="py-1 px-2 hover:cursor-pointer rounded hover:bg-(--secondary-background-color)"
+            <li class="py-1 px-2 hover:cursor-pointer rounded"
                 (mousedown)="handleOnMouseDownAtListItem(dataSource)">
                 {{dataSource.getLabel()}}
             </li>

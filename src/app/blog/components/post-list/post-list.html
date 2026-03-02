@@ -1,12 +1,12 @@
 <!-- Header for the page -->
-<div class="mb-3 text-(--primary-font-color) flex items-center justify-between">
+<div class="mb-3 text-white flex items-center justify-between">
     <app-header [size]="3" label="All posts" class="text-(--secondary-darker)"></app-header>
 
     <div class="lg:hidden relative">
         <ng-content *ngTemplateOutlet="filterHeader"></ng-content>
 
         @if(displayDropdown) {
-        <div class="absolute rounded right-0 p-3 border-1 border-(--primary-font-color) bg-(--primary-darker) mt-1">
+        <div class="absolute rounded right-0 p-3 border-1 border-white bg-(--primary-darker) mt-1">
             <ng-content *ngTemplateOutlet="filterOptions"></ng-content>
         </div>
         }
@@ -19,23 +19,37 @@
 @if(!displayLoading) {
 <section class="flex gap-2 items-center">
     <div class="loader-spinner"></div>
-    <span class="text-(--primary-font-color)">Loading</span>
+    <span class="text-white">Loading</span>
 </section>
 } @else {
-<div class="text-(--primary-font-color)">
+<div class="text-white m-auto">
 
-    <app-p-text class="text-(--primary-font-color)">Displaying {{postList.length}} of {{postList.length}} results</app-p-text>
+    <app-p-text class="text-(--light-gray)">Displaying {{postList.length}} of {{postList.length}} results</app-p-text>
 
 
-    <div class="flex gap-10 justify-center mt-8 max-w-4xl">
+    <div class="flex gap-10 justify-center mt-8 max-w-6xl">
         <!-- post listing -->
         <div class="flex flex-col gap-8">
             @for (post of postList; track $index) {
-            <app-blog-post-card [blogPost]="post"></app-blog-post-card>
+            <a [routerLink]="['/', 'blog', 'posts', post.id]">
+                <app-card extraClasses="p-3 sm:p-6 text-(--primary-darker)">
+                    <p class="header-5">{{post.title}}</p>
+
+                    <div class="text-sm mt-2">
+                        <i class="bi bi-calendar3 mr-1"></i>
+                        <span class="text-sm italic">
+                            {{ post.createdTimestampMiliseconds | fromUnixEpochMilisecondsToDayMonthYear }}
+                            {{ post.createdTimestampMiliseconds | fromUnixEpochMilisecondsToCustomTimeAgo }}
+                        </span>
+                    </div>
+
+                    <p class="p-text">{{post.body | fromBlogTextHtmlToText:200}}</p>
+                </app-card>
+            </a>
             }
         </div>
 
-        <div class="hidden lg:block w-px bg-amber-50"></div>
+        <div class="hidden lg:block w-px bg-(--light-gray)"></div>
 
         <!-- filtering options -->
         <div class="hidden lg:block w-80">
@@ -64,7 +78,7 @@
 <!-- Container header separated to make responsive design easier -->
 <ng-template #filterOptions>
 
-    <section class="text-(--primary-font-color)">
+    <section class="text-white">
 
         <hr class="my-2 hidden">
 

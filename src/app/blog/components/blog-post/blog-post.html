@@ -2,7 +2,7 @@
     <app-header [label]="blogPost.title" [size]="2" class="text-(--secondary-darker)"></app-header>
 
     <!-- creation and last update section -->
-    <div class="text-sm mt-2 text-(--secondary-font-color)">
+    <div class="text-sm mt-2 text-(--light-gray)">
         <i class="bi bi-calendar3 mr-1"></i>
         <span class="italic">
             {{ blogPost.createdTimestampMiliseconds | fromUnixEpochMilisecondsToDayMonthYear }}
@@ -18,11 +18,11 @@
     }
 
     <!-- the container that holds the body of the post -->
-    <div class="mt-5 text-(--primary-font-color) text-justify" [innerHTML]="blogPost.body"> </div>
+    <div class="mt-5 text-white text-justify" [innerHTML]="blogPost.body"> </div>
 
-    <hr class="my-8 border-(--secondary-font-color)">
+    <hr class="my-8 border-(--light-gray)">
 
-    <p class="text-sm italic text-center md:text-end text-(--secondary-font-color)">
+    <p class="text-sm italic text-center md:text-end text-(--light-gray)">
         Last edited:
         {{ blogPost.lastUpdatedTimestampMiliseconds | fromUnixEpochMilisecondsToDayMonthYear }} at
         {{ blogPost.lastUpdatedTimestampMiliseconds | fromUnixEpochMilisecondsToHourMinuteSecond }}
@@ -38,7 +38,7 @@
     <div class="mt-8">
 
         @if(relatedPosts.length === 0) {
-        <app-p-text class="text-(--secondary-font-color)">
+        <app-p-text class="text-(--light-gray)">
             <i class="bi bi-exclamation-circle"></i>
             <span class="italic ml-2">No related posts available</span>
         </app-p-text>

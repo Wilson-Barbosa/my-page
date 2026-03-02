@@ -27,11 +27,9 @@
     --secondary-darker: #dda027;
     --secondary-lighter: #e6d0a4;
 
-    /* Theme-related colors */
-    --primary-background-color: ;
-    --secondary-background-color: ;
-    --primary-font-color: ;
-    --secondary-font-color: ;
+    --white: #f3f3f3;
+    --light-gray: #aaaaaa;
+
 }
 
 html {
