@@ -5,10 +5,10 @@ import { BlogPostLoader } from '../../models/loaders';
 import { BlogPostObject } from '../../models/post-models';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import { PText } from '../p-text/p-text';
-import { BlogPostCard } from '../blog-post-card/blog-post-card';
+
 import { FromUnixEpochMilisecondsToDayMonthYearPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-day-month-year-pipe";
 import { FromUnixEpochMilisecondsToCustomTimeAgoPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-custom-time-ago-pipe";
-import { FromHtmlToHighlightedStringPipe } from "../../../shared/pipes/from-html-to-highlighted-string-pipe";
+
 import { RouterLink } from '@angular/router';
 import { Card } from "../../../shared/components/card/card";
 import { FromBlogTextHtmlToTextPipe } from "../../../shared/pipes/from-blog-text-html-to-text-pipe";
@@ -20,10 +20,8 @@ import { FromBlogTextHtmlToTextPipe } from "../../../shared/pipes/from-blog-text
     NgTemplateOutlet,
     NgClass,
     PText,
-    BlogPostCard,
     FromUnixEpochMilisecondsToDayMonthYearPipe,
     FromUnixEpochMilisecondsToCustomTimeAgoPipe,
-    FromHtmlToHighlightedStringPipe,
     RouterLink,
     Card,
     FromBlogTextHtmlToTextPipe

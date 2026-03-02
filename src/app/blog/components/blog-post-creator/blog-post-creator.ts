@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Header } from "../../../shared/components/header/header";
-import { PText } from "../p-text/p-text";
+
 import { Image } from "../image/image";
 import { FromUnixEpochMilisecondsToDayMonthYearPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-day-month-year-pipe";
 import { FromUnixEpochMilisecondsToHourMinuteSecondPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-hour-minute-second-pipe";
@@ -8,7 +8,7 @@ import { FromUnixEpochMilisecondsToCustomTimeAgoPipe } from "../../../shared/pip
 
 @Component({
     selector: 'app-blog-post-creator',
-    imports: [Header, PText, Image, FromUnixEpochMilisecondsToDayMonthYearPipe, FromUnixEpochMilisecondsToHourMinuteSecondPipe, FromUnixEpochMilisecondsToCustomTimeAgoPipe],
+    imports: [Header, Image, FromUnixEpochMilisecondsToDayMonthYearPipe, FromUnixEpochMilisecondsToHourMinuteSecondPipe, FromUnixEpochMilisecondsToCustomTimeAgoPipe],
     templateUrl: './blog-post-creator.html',
     styleUrl: './blog-post-creator.css'
 })

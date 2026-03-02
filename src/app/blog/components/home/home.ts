@@ -5,13 +5,13 @@ import { BlogPostObject } from '../../models/post-models';
 import { BlogPostLoader } from '../../models/loaders';
 import { BlogPostJsonLoader } from '../../services/blog-post-json-loader/blog-post-json-loader';
 import { BlogPostCard } from "../blog-post-card/blog-post-card";
-import { Card } from "../../../shared/components/card/card";
+
 import { RouterLink } from '@angular/router';
 import { FromBlogTextHtmlToTextPipe } from "../../../shared/pipes/from-blog-text-html-to-text-pipe";
 
 @Component({
     selector: 'app-home',
-    imports: [Header, PText, BlogPostCard, Card, RouterLink, FromBlogTextHtmlToTextPipe],
+    imports: [Header, PText, BlogPostCard, RouterLink, FromBlogTextHtmlToTextPipe],
     templateUrl: './home.html',
     styleUrl: './home.css'
 })
