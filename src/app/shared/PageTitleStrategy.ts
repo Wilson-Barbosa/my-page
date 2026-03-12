@@ -12,11 +12,12 @@ export class PageTitleStrategy extends TitleStrategy {
     override updateTitle(snapshot: RouterStateSnapshot): void {
 
         const title = this.buildTitle(snapshot);
+        const name: string = "Wilson Barbosa"
 
         if (title) {
-            this.titleService.setTitle(`${title} | Wilson Diego Barbosa`);
+            this.titleService.setTitle(`${title} | ${name}`);
         } else {
-            this.titleService.setTitle(`Wilson Diego Barbosa`);
+            this.titleService.setTitle(`${name}`);
         }
 
 
