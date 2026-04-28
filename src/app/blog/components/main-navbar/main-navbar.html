@@ -9,6 +9,8 @@
         <li><a routerLinkActive="active-navbar-item" routerLink="home" class="hover:border-b-(--secondary-darker) hover:border-b-2 py-2 px-3">Home</a></li>
         <li><a routerLinkActive="active-navbar-item" routerLink="/blog/posts" class="hover:border-b-(--secondary-darker) hover:border-b-2 py-2 px-3">Posts</a></li>
         <li><a routerLinkActive="active-navbar-item" routerLink="/portfolio" class="hover:border-b-(--secondary-darker) hover:border-b-2 py-2 px-3">Portfolio</a></li>
+
+        @if (displaySearch) {
         <li [ngClass]="{'ring-2 ring-(--light-gray)': showFocusEffect}" class="border-2 border-(--primary-lighter) rounded px-4 py-2">
             <input
                 type="text"
@@ -20,6 +22,7 @@
                 (keydown.enter)="redirectSearch()">
             <i class="bi bi-search"></i>
         </li>
+        }
     </ul>
 
     <!-- collapse menu icon -->

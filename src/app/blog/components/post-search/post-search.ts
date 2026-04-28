@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Header } from "../../../shared/components/header/header";
 import { BlogPostLoader } from '../../models/loaders';
 import { BlogPostJsonLoader } from '../../services/blog-post-json-loader/blog-post-json-loader';
@@ -11,6 +11,7 @@ import { PText } from "../p-text/p-text";
 import { NgClass } from '@angular/common';
 import { FromUnixEpochMilisecondsToCustomTimeAgoPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-custom-time-ago-pipe";
 import { FromUnixEpochMilisecondsToDayMonthYearPipe } from "../../../shared/pipes/from-unix-epoch-miliseconds-to-day-month-year-pipe";
+import { ControlSearchBarState } from '../../services/control-search-bar-state/control-search-bar-state';
 
 @Component({
     selector: 'app-posts',
@@ -18,11 +19,12 @@ import { FromUnixEpochMilisecondsToDayMonthYearPipe } from "../../../shared/pipe
     templateUrl: './post-search.html',
     styleUrl: './post-search.css'
 })
-export class PostSearch implements OnInit {
+export class PostSearch implements OnInit, OnDestroy {
 
     private readonly blogPostLoader: BlogPostLoader = inject(BlogPostJsonLoader);
     private readonly router: Router = inject(Router);
     private readonly activatedSnapshot: ActivatedRoute = inject(ActivatedRoute);
+    private readonly controlSearchBarState: ControlSearchBarState = inject(ControlSearchBarState);
 
     private readonly SEARCH_KEY: string = "body";
 
@@ -45,7 +47,14 @@ export class PostSearch implements OnInit {
             this.searchFormGroup.setValue({postInputForm: queryParameter});
             this.searchPost();
         }
+
+        this.controlSearchBarState.hideSearchBar();
     }
+
+    ngOnDestroy(): void {
+        this.controlSearchBarState.showSearchBar();
+    }
+
 
     handleOnButtonClick(): void {
         this.searchPost();
